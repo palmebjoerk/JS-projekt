@@ -1,5 +1,4 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express');const db = require('../data/db');const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -44,6 +43,27 @@ router.get('/register', function(req, res, next) {
 /* GET search page. */
 router.get('/search', function(req, res, next) {
   res.render('search', { title: 'Search' });
+});
+
+/* GET new product page. */
+router.get('/products/new', function(req, res, next) {
+  res.render('products/new', { title: 'New Product' });
+});
+
+/* POST new product. */
+router.post('/products/new', function(req, res, next) {
+  var stmt = db.prepare(
+    'INSERT INTO clothes (brand, model, color, description, price, image_url) VALUES (?, ?, ?, ?, ?, ?)'
+  );
+  stmt.run(
+    req.body.brand,
+    req.body.model,
+    req.body.color,
+    req.body.description,
+    Number(req.body.price) || 0,
+    req.body.image_url || ''
+  );
+  res.redirect('/');
 });
 
 /* GET Admin page. */
