@@ -3,17 +3,32 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+	"start": "node ./bin/www",
+	"dev": "concurrently \"npm run server\" \"npm run tailwind\" \"npm run browser-sync\"",
+	"server": "nodemon ./bin/www",
+	"browser-sync": "browser-sync start --no-notify --proxy \"localhost:8080\" --files \"public, views, routes\"",
+	"tailwind": "npx @tailwindcss/cli -i ./src/input.css -o ./public/stylesheets/output.css --watch"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "ejs": "~2.6.1",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "morgan": "~1.9.1"
+	"better-sqlite3": "^12.9.0",
+	"cookie-parser": "~1.4.4",
+	"debug": "~2.6.9",
+	"ejs": "~2.6.1",
+	"express": "~4.16.1",
+	"express-ejs-layouts": "^2.5.1",
+	"http-errors": "~1.6.3",
+	"morgan": "~1.9.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+	"@tailwindcss/cli": "^4.2.2",
+	"browser-sync": "^3.0.4",
+	"concurrently": "^9.2.1",
+	"daisyui": "^5.5.19",
+	"nodemon": "^3.1.14",
+	"prettier": "^3.8.3",
+	"prettier-plugin-ejs": "^1.0.3",
+	"prettier-plugin-sql": "^0.20.0",
+	"prettier-plugin-tailwindcss": "^0.7.2",
+	"tailwindcss": "^4.2.2"
   }
 }
