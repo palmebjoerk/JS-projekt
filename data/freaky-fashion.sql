@@ -51,16 +51,11 @@ VALUES
 'blå-hoodie-CK.png'
 );
 (
-
-);
-(
-
-);
-
-(
-
-);
-
-(
+    'Nike',
+    'Keps',
+    'Neon',
+    'Neonkepa från Nike',
+    649,
+    'neon-nike-keps.png'
 
 );
