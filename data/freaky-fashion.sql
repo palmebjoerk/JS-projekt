@@ -18,44 +18,43 @@ image_url
 )
 VALUES
 (
-'Levis',
+'Freaky Fashion',
 'T-Shirt',
 'Svart',
-"Svart Levis-T-shirt i bomull",
+"Svart Freaky Fashion i bomull",
 399,
-'Levis-svart-tshirt.png'
+'Freaky-Fashion-svart-tshirt.png'
 ),
 (
-'DC',
+'Freaky Fashion',
 'Sko',
 'Camo',
-'Camofärgade sneakers från DC',
+'Camofärgade sneakers från Freaky Fashion',
 999,
-'DC-sko-camo.png'
+'Freaky-Fashion-sko-camo.png'
 ),
 (
-'JL',
+'Freaky Fashion',
 'Pikétröja',
-'White'
-'Vit pikétröja från JL',
-1199
-
-'vit-JL-pikétröja.png'
+'White',
+'Vit pikétröja från Freaky Fashion',
+1199,
+'Freaky-Fashion-vit-pikétröja.png'
 ),
 (
-'CK',
+'Freaky Fashion',
 'Hoodie',
-'Blå'
-'Blå hoodie från Calvin Klein',
+'Blå',
+'Blå hoodie från Freaky Fashion',
 1399,
-'blå-hoodie-CK.png'
+'Freaky-Fashion-blå-hoodie.png'
 );
 (
-    'Nike',
+    'Freaky Fashion',
     'Keps',
     'Neon',
-    'Neonkepa från Nike',
+    'Neonkepa från Freaky Fashion',
     649,
-    'neon-nike-keps.png'
+    'neon-freaky-fashion-keps.png'
 
 );
