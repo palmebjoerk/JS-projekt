@@ -1,0 +1,35 @@
+.site-footer {
+    margin-top: 6px;
+}
+
+.footer-box {
+    border: 1px solid #444;
+    padding: 10px 10px 12px;
+    background: #dcdcdc;
+}
+
+.footer-box h3 {
+    margin: 0 0 8px;
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.footer-columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.footer-box a {
+    display: block;
+    margin: 0 0 8px;
+    color: #111;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.footer-brand {
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 11px;
+}

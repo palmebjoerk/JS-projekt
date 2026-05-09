@@ -50,6 +50,10 @@ router.get('/products/new', function(req, res, next) {
   res.render('products/new', { title: 'New Product' });
 });
 
+router.get('/products', function(req, res, next) {
+  res.render('products', { title: 'Products' });
+});
+
 /* POST new product. */
 router.post('/products/new', function(req, res, next) {
   var stmt = db.prepare(
