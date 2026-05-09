@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produktdetalj</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="mobile-shell">
+        <div class="content-frame">
+            <!-- Header -->
+            <header class="site-header">
+                <!-- Logotyp -->
+                <img class="top-logo" src="Images/logo-placeholder.svg" alt="Logotyp">
+
+                <!-- Sökfält och ikoner -->
+                <div class="search-icons-row">
+                    <input type="text" class="search-input" placeholder="Sök produkt" aria-label="Sök produkt">
+                    <a href="#" class="icon-link" aria-label="Favoriter">
+                        <img src="Images/heart.png" alt="Favoriter">
+                    </a>
+                    <a href="#" class="icon-link" aria-label="Kundvagn">
+                        <img src="Images/shopping-cart.png" alt="Kundvagn">
+                    </a>
+                </div>
+
+                <!-- Kategorimeny -->
+                <nav class="category-nav" aria-label="Produktkategorier">
+                    <a href="#">Nyheter</a>
+                    <a href="#">Bästsäljare</a>
+                    <a href="#">Kvinnor</a>
+                    <a href="#">Män</a>
+                </nav>
+            </header>
+
+            <!-- Huvudinnehåll -->
+            <main>
+                <!-- Produktdetaljer -->
+                <article class="product-detail">
+                    <!-- Huvudbild -->
+                    <img class="product-image" src="Images/Svart T-shirt Produkt-bild.jpg" alt="Svart T-Shirt">
+
+                    <!-- Produktinformation -->
+                    <div class="product-info">
+                        <h2>Svart T-Shirt</h2>
+                        <p class="brand">Levis</p>
+                        <p class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
+                        </p>
+
+                        <p class="price">199 SEK</p>
+
+                        <button type="button" class="add-to-cart">Lägg i varukorg</button>
+                    </div>
+                </article>
+
+                <!-- Liknande produkter -->
+                <section class="related-products" aria-label="Liknande produkter">
+                    <h3>Liknande produkter</h3>
+
+                    <!-- Produktkort -->
+                    <div class="related-grid">
+                        <article class="related-card">
+                            <img src="Images/Svart T-shirt.jpg" alt="Svart T-Shirt">
+                            <p class="related-name">Svart T-Shirt</p>
+                            <p class="related-price">199 SEK</p>
+                            <p class="related-brand">Levis</p>
+                        </article>
+                        <article class="related-card">
+                            <img src="Images/Svart T-shirt.jpg" alt="Svart T-Shirt">
+                            <p class="related-name">Svart T-Shirt</p>
+                            <p class="related-price">199 SEK</p>
+                            <p class="related-brand">Levis</p>
+                        </article>
+                        <article class="related-card">
+                            <img src="Images/Svart T-shirt.jpg" alt="Svart T-Shirt">
+                            <p class="related-name">Svart T-Shirt</p>
+                            <p class="related-price">199 SEK</p>
+                            <p class="related-brand">Levis</p>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Butiksförmåner -->
+                <ul class="benefits" aria-label="Butiksförmåner">
+                    <li><span class="benefit-icon">🌍</span>Gratis frakt och returer</li>
+                    <li><span class="benefit-icon">🔒</span>Expressfrakt</li>
+                    <li><span class="benefit-icon">✈️</span>Säkra betalningar</li>
+                    <li><span class="benefit-icon">😊</span>Nyheter varje dag</li>
+                </ul>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer" aria-label="Footer navigation">
+            <div class="footer-box">
+                <!-- Footer-länkar -->
+                <div class="footer-columns">
+                    <div class="footer-group">
+                        <h3>Shopping</h3>
+                        <a href="#">Vinterjackor</a>
+                        <a href="#">Pufferjackor</a>
+                        <a href="#">Kappa</a>
+                        <a href="#">Trenchcoats</a>
+                    </div>
+                    <div class="footer-group">
+                        <h3>Mina Sidor</h3>
+                        <a href="#">Mina Ordrar</a>
+                        <a href="#">Mitt Konto</a>
+                    </div>
+                </div>
+
+                <!-- Footer-text -->
+                <p class="footer-brand">&#169; Freaky Fashion</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
