@@ -25,27 +25,30 @@
         </article>
     </section>
 
-    <section class="product-grid">
-      <% if (clothes && clothes.length) { %>
-        <% clothes.forEach(function(item) { %>
-          <article class="product-card">
-            <div class="product-meta">
-              <div class="product-info">
-                <span class="product-name"><%= item.model %></span>
-                <span class="product-brand"><%= item.brand %></span>
-              </div>
-              <p class="product-description"><%= item.description %></p>
-              <p class="product-color">Färg: <%= item.color %></p>
-              <span class="product-price"><%= item.price %>kr</span>
-            </div>
-          </article>
-        <% }); %>
-      <% } else { %>
-        <article class="product-card empty-state">
-          <p>Inga produkter att visa än.</p>
-        </article>
-      <% } %>
-    </section>
+<section class="product-grid">
+  <% if (clothes && clothes.length) { %>
+    <% clothes.forEach(function(item) { %>
+      <article class="product-card" style="background:#eee; padding:20px; margin:20px 0;">
+        <img
+          src="<%= item.image %>"
+          alt="<%= item.name %>"
+          style="width:200px; height:auto; display:block; border:2px solid red;"
+        >
+
+        <div class="product-meta">
+          <div class="product-info">
+            <span class="product-name"><%= item.name %></span>
+          </div>
+          <span class="product-price"><%= item.price %> kr</span>
+        </div>
+      </article>
+    <% }); %>
+  <% } else { %>
+    <article class="product-card empty-state">
+      <p>Inga produkter att visa än.</p>
+    </article>
+  <% } %>
+</section>
 
     <section class="footer-panel">
         <div class="benefit-row">

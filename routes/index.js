@@ -83,7 +83,21 @@ router.get('/admin', function(req, res, next) {
 
 /* Get categories page. */
 router.get('/categories/klader', function(req, res, next) {
-  res.render('categories/klader', { title: 'Kläder' });
+res.render('categories/klader', { title: 'Kläder' });
+});
+
+router.get('/', function(req, res, next) {
+  const clothes = [
+    { id: 1, name: 'Svart T-shirt', price: 199, image: '/stylesheets/Images/Svart Freaky Fashion t-shirt.png' },
+    { id: 2, name: 'Hoodie', price: 499, image: '/stylesheets/Images/Freaky Fashion Blå Hoodie.png' },
+    { id: 3, name: 'Skor', price: 699, image: '/stylesheets/Images/Freaky Fashion militär skor.png' },
+    { id: 4, name: 'Vit pike', price: 399, image: '/stylesheets/Images/Freaky Fashion Vit Pike.png' }
+  ];
+
+  res.render('index', {
+    title: 'Kläder',
+    clothes: clothes
+  });
 });
 
 module.exports = router;
