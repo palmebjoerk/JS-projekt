@@ -81,4 +81,9 @@ router.get('/admin', function(req, res, next) {
   res.render('admin/index', { title: 'Admin' });
 });
 
+/* Get categories page. */
+router.get('/categories/klader', function(req, res, next) {
+  res.render('categories/klader', { title: 'Kläder' });
+});
+
 module.exports = router;
