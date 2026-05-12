@@ -48,7 +48,7 @@ VALUES
 'Blå hoodie från Freaky Fashion',
 1399,
 'Freaky-Fashion-blå-hoodie.png'
-);
+),
 (
     'Freaky Fashion',
     'Keps',
