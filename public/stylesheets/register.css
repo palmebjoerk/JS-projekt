@@ -1,0 +1,14 @@
+ 
+
+    .register_account {
+        display:flex;
+        justify-content: center;
+        text-align: center;
+     }
+
+     .login {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    
+     }
