@@ -1,8 +1,13 @@
 const express = require('express');const db = require('../data/db');const router = express.Router();
 
+function getClothes() {
+  return db.prepare('SELECT * FROM clothes').all();
+}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  const clothes = getClothes();
+  res.render('index', { title: 'Express', clothes });
 });
 
 /* GET basket page. */
@@ -22,7 +27,8 @@ router.get('/error', function(req, res, next) {
 
 /* GET index page. */
 router.get('/index', function(req, res, next) {
-  res.render('index', { title: 'Index' });
+  const clothes = getClothes();
+  res.render('index', { title: 'Index', clothes });
 });
 
 /* GET login page. */

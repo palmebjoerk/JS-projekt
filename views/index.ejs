@@ -44,26 +44,25 @@
     </section>
 
     <section class="product-grid">
-       <% for (let i = 0; i < 8; i++) { %>
-  <article class="product-card">
-    <a
-      class="product-link"
-      href="Produkt-details.html"
-      aria-label="Visa produkt: Svart tröja"
-    >
-      <img src="Images/Svart T-shirt.jpg" alt="Svart tröja" />
-      <div class="product-meta">
-        <div class="product-info">
-          <span class="product-name">Svart tröja</span>
-          <span class="product-brand">Levis</span>
-        </div>
-        <span class="product-price">199kr</span>
-      </div>
-    </a>
-  </article>
-<% } %>
-
-        
+      <% if (clothes && clothes.length) { %>
+        <% clothes.forEach(function(item) { %>
+          <article class="product-card">
+            <div class="product-meta">
+              <div class="product-info">
+                <span class="product-name"><%= item.model %></span>
+                <span class="product-brand"><%= item.brand %></span>
+              </div>
+              <p class="product-description"><%= item.description %></p>
+              <p class="product-color">Färg: <%= item.color %></p>
+              <span class="product-price"><%= item.price %>kr</span>
+            </div>
+          </article>
+        <% }); %>
+      <% } else { %>
+        <article class="product-card empty-state">
+          <p>Inga produkter att visa än.</p>
+        </article>
+      <% } %>
     </section>
 
     <section class="footer-panel">
