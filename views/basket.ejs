@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/basket.css">
+    <link rel="stylesheet" href="/stylesheets/header.css">
 </head>
 <body>
+  <%- include("partials/header.ejs"); %>
+  <main>
     <section class="cart-section">
 
   <h1 class="cart-title">Varukorgen</h1>
@@ -64,7 +68,8 @@
   </div>
 
 </section>
-  
+  </main>
+<%- include("partials/footer.ejs"); %>
     
 </body>
 </html>
