@@ -4,36 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produktdetalj</title>
-    <link rel="stylesheet" href="main.css">
-</head>
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
 <body>
+    <%- include("partials/header.ejs"); %>
     <div class="mobile-shell">
         <div class="content-frame">
-            <!-- Header -->
-            <header class="site-header">
-                <!-- Logotyp -->
-                <img class="top-logo" src="Images/logo-placeholder.svg" alt="Logotyp">
-
-                <!-- Sökfält och ikoner -->
-                <div class="search-icons-row">
-                    <input type="text" class="search-input" placeholder="Sök produkt" aria-label="Sök produkt">
-                    <a href="#" class="icon-link" aria-label="Favoriter">
-                        <img src="Images/heart.png" alt="Favoriter">
-                    </a>
-                    <a href="#" class="icon-link" aria-label="Kundvagn">
-                        <img src="Images/shopping-cart.png" alt="Kundvagn">
-                    </a>
-                </div>
-
-                <!-- Kategorimeny -->
-                <nav class="category-nav" aria-label="Produktkategorier">
-                    <a href="#">Nyheter</a>
-                    <a href="#">Bästsäljare</a>
-                    <a href="#">Kvinnor</a>
-                    <a href="#">Män</a>
-                </nav>
-            </header>
-
+           
             <!-- Huvudinnehåll -->
             <main>
                 <!-- Produktdetaljer -->
@@ -93,29 +71,9 @@
             </main>
         </div>
 
-        <!-- Footer -->
-        <footer class="site-footer" aria-label="Footer navigation">
-            <div class="footer-box">
-                <!-- Footer-länkar -->
-                <div class="footer-columns">
-                    <div class="footer-group">
-                        <h3>Shopping</h3>
-                        <a href="#">Vinterjackor</a>
-                        <a href="#">Pufferjackor</a>
-                        <a href="#">Kappa</a>
-                        <a href="#">Trenchcoats</a>
-                    </div>
-                    <div class="footer-group">
-                        <h3>Mina Sidor</h3>
-                        <a href="#">Mina Ordrar</a>
-                        <a href="#">Mitt Konto</a>
-                    </div>
-                </div>
 
-                <!-- Footer-text -->
-                <p class="footer-brand">&#169; Freaky Fashion</p>
-            </div>
-        </footer>
+           
     </div>
+    <%- include("partials/footer.ejs"); %>
 </body>
 </html>
