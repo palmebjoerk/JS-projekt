@@ -97,6 +97,31 @@ body {
     justify-items: stretch;
 }
 
+@media (min-width: 640px) {
+    .header-top {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+    }
+
+    .header-logo-row {
+        flex-shrink: 0;
+    }
+
+    .header-search-icons-row {
+        flex: 1;
+    }
+
+    .nav-bar ul {
+        flex-direction: row;
+        gap: 4px;
+    }
+
+    .nav-bar a {
+        padding: 8px 14px;
+    }
+}
+
 .nav-bar a {
     text-decoration: none;
     color: black;

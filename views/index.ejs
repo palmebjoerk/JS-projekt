@@ -1,101 +1,86 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projekt Arbete</title>
 </head>
-</head>
 <body>
     <%- include("partials/header.ejs"); %>
-<main>
-  <%- include("partials/hero.ejs"); %>
-        <article class="spot-card">
-            <div class="spot-card-content">
-                <h3>Material:</h3>
-                <p>100% bomull</p>
-            </div>
-        </article>
+    <main>
+        <%- include("partials/hero.ejs"); %>
 
-        <article class="spot-card">
-            <div class="spot-card-content">
-                <h3>Material:</h3>
-                <p>100% bomull</p>
-            </div>
-        </article>
-    </section>
 
-<section class="product-grid">
-  <% if (clothes && clothes.length) { %>
-    <% clothes.forEach(function(item) { %>
-      <article class="product-card" style="background:#eee; padding:20px; margin:20px 0;">
-        <img
-          src="<%= item.image %>"
-          alt="<%= item.name %>"
-          style="width:200px; height:auto; display:block; border:2px solid red;"
-        >
+        <%- include("partials/spots.ejs"); %>
 
-        <div class="product-meta">
-          <div class="product-info">
-            <span class="product-name"><%= item.name %></span>
-          </div>
-          <span class="product-price"><%= item.price %> kr</span>
-        </div>
-      </article>
-    <% }); %>
-  <% } else { %>
-    <article class="product-card empty-state">
-      <p>Inga produkter att visa än.</p>
-    </article>
-  <% } %>
-</section>
+        <section class="product-grid">
+            <% if (clothes && clothes.length) { %>
+                <% clothes.forEach(function(item) { %>
+                    <article class="product-card">
+                        <a href="#" class="product-link">
+                            <div class="product-img-wrap">
+                                <img src="<%= item.image %>" alt="<%= item.name %>">
+                                <button class="favorite-btn" aria-label="Spara till favoriter">❤</button>
+                            </div>
+                            <div class="product-meta">
+                                <div class="product-info">
+                                    <span class="product-name"><%= item.name %></span>
+                                </div>
+                                <% if (item.price > 0) { %>
+                                    <span class="product-price"><%= item.price %> kr</span>
+                                <% } %>
+                            </div>
+                        </a>
+                    </article>
+                <% }); %>
+            <% } else { %>
+                <article class="product-card empty-state">
+                    <p>Inga produkter att visa än.</p>
+                </article>
+            <% } %>
+        </section>
 
-    <section class="footer-panel">
-        <div class="benefit-row">
-            <div class="benefit-item">
-                <span class="benefit-icon">🌍</span>
-                <p>Gratis frakt och returer</p>
-            </div>
-
-            <div class="benefit-item">
-                <span class="benefit-icon">🔒</span>
-                <p>Säkra betalningar</p>
-            </div>
-
-            <div class="benefit-item">
-                <span class="benefit-icon">✈️</span>
-                <p>Expressfrakt</p>
+        <section class="footer-panel">
+            <div class="benefit-row">
+                <div class="benefit-item">
+                    <span class="benefit-icon">🌍</span>
+                    <p>Gratis frakt och returer</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🔒</span>
+                    <p>Säkra betalningar</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">✈️</span>
+                    <p>Expressfrakt</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">😊</span>
+                    <p>Nyheter varje dag</p>
+                </div>
             </div>
 
-            <div class="benefit-item">
-                <span class="benefit-icon">😊</span>
-                <p>Nyheter varje dag</p>
+            <div class="footer-menu">
+                <div class="menu-block">
+                    <h3>Shopping</h3>
+                    <ul>
+                        <li><a href="#">Vinterjackor</a></li>
+                        <li><a href="#">Pufferjackor</a></li>
+                        <li><a href="#">Kappa</a></li>
+                        <li><a href="#">Trenchcoats</a></li>
+                    </ul>
+                </div>
+                <div class="menu-block">
+                    <h3>Mina Sidor</h3>
+                    <ul>
+                        <li><a href="#">Mina Ordrar</a></li>
+                        <li><a href="#">Mitt Konto</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </section>
+    </main>
 
-        <div class="footer-menu">
-            <div class="menu-block">
-                <h3>Shopping</h3>
-                <ul>
-                    <li><a href="#">Vinterjackor</a></li>
-                    <li><a href="#">Pufferjackor</a></li>
-                    <li><a href="#">Kappa</a></li>
-                    <li><a href="#">Trenchcoats</a></li>
-                </ul>
-            </div>
-
-            <div class="menu-block">
-                <h3>Mina Sidor</h3>
-                <ul>
-                    <li><a href="#">Mina Ordrar</a></li>
-                    <li><a href="#">Mitt Konto</a></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-</main>
-
-<%- include("partials/footer.ejs"); %>
-
+    <%- include("partials/footer.ejs"); %>
 </body>
 </html>
