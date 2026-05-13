@@ -1,0 +1,10 @@
+<section class="spots-section">
+    <% spots.forEach(function(spot) { %>
+        <a href="#" class="spot-item">
+            <img src="<%= spot.image %>" alt="<%= spot.name %>">
+            <div class="spot-overlay">
+                <h3><%= spot.name %></h3>
+            </div>
+        </a>
+    <% }); %>
+</section>
