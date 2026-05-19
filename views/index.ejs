@@ -25,11 +25,15 @@
                             <div class="product-meta">
                                 <div class="product-info">
                                     <span class="product-name"><%= item.name %></span>
-                                    <span class="product-price"> <%= item.price %></span>
+                                    <p class="product-subtext"><%= item.brand %> <%= item.model %> | <%= item.color %></p>
                                 </div>
-                                <% if (item.price > 0) { %>
-                                    <span class="product-price"><%= item.price %> kr</span>
-                                <% } %>
+                                <span class="product-price">
+                                    <% if (item.price > 0) { %>
+                                        <%= item.price %> kr
+                                    <% } else { %>
+                                        Kontakta oss
+                                    <% } %>
+                                </span>
                             </div>
                         </a>
                     </article>
