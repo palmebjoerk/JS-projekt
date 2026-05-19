@@ -29,9 +29,26 @@ function getClothesFromImages() {
   }));
 }
 
+function getClothesFromDb() {
+  const rows = db.prepare(
+    'SELECT id, brand, model, color, description, price, image_url FROM clothes'
+  ).all();
+  return rows.map(row => ({
+    id: row.id,
+    name: `${row.brand} ${row.model}`.trim(),
+    image: row.image_url || '',
+    price: row.price || 0,
+    description: row.description,
+    color: row.color
+  }));
+}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  const clothes = getClothesFromImages();
+  let clothes = getClothesFromDb();
+  if (!clothes.length) {
+    clothes = getClothesFromImages();
+  }
   const pick = (keyword) => clothes.find(c => c.name.toLowerCase().includes(keyword));
   const spots = [
     pick('hoodie'),
@@ -58,7 +75,7 @@ router.get('/error', function(req, res, next) {
 
 /* GET index page. */
 router.get('/index', function(req, res, next) {
-  const clothes = getClothes();
+  const clothes = getClothesFromDb();
   res.render('index', { title: 'Index', clothes });
 });
 
