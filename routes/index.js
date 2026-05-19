@@ -36,7 +36,9 @@ function getClothesFromDb() {
   return rows.map(row => ({
     id: row.id,
     name: `${row.brand} ${row.model}`.trim(),
-    image: row.image_url || '',
+    brand: row.brand,
+    model: row.model,
+    image: row.image_url ? (row.image_url.startsWith('/') ? row.image_url : '/stylesheets/Images/' + row.image_url) : '',
     price: row.price || 0,
     description: row.description,
     color: row.color
@@ -49,13 +51,6 @@ router.get('/', function(req, res, next) {
   if (!clothes.length) {
     clothes = getClothesFromImages();
   }
-  const pick = (keyword) => clothes.find(c => c.name.toLowerCase().includes(keyword));
-  const spots = [
-    pick('hoodie'),
-    pick('piké'),
-    pick('kepa'),
-  ].filter(Boolean);
-  const clothes = getClothesFromImages();
   const spotDefs = [
     { keyword: 'hoodie', label: 'Hoodies' },
     { keyword: 'piké',   label: 'Pikétröjor' },
