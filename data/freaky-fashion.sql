@@ -23,7 +23,7 @@ VALUES
 'Svart',
 "Svart Freaky Fashion-hoodie",
 399,
-'FF_svart_hoodie.png'
+'FF_Svart_Hoodie.png'
 ),
 (
 'Freaky Fashion',
@@ -31,7 +31,7 @@ VALUES
 'Blå',
 'Blå Freaky Fashion-hoodie',
 999,
-'FF_blå_hoodie.png'
+'FF_Blå_Hoodie.png'
 ),
 (
 'Freaky Fashion',
@@ -39,7 +39,7 @@ VALUES
 'Blå',
 'Vit pikétröja från Freaky Fashion',
 1199,
-'FF_blå_pike.png'
+'FF_Blå_Piké.png'
 ),
 (
 'Freaky Fashion',
@@ -47,15 +47,16 @@ VALUES
 'Grön',
 'Grön hoodie från Freaky Fashion',
 1399,
-'FF_grön_hoodie.png'
-),
+'FF_Grön_Hoodie.png'
+)
+,
 (
 'Freaky Fashion',
 'Keps',
 'Neon',
 'Neonkepa från Freaky Fashion',
 649,
-'FF_neon_keps.png'
+'FF_Neon_Kepa.png'
 
 ),
 (
@@ -64,7 +65,7 @@ VALUES
 'Gul',
 'Gul hoodie från Freaky Fashion',
 1399,
-'FF_gul_hoodie.png'
+'FF_Gul_Hoodie.png'
 ),
 (
 'Freaky Fashion',
@@ -72,7 +73,7 @@ VALUES
 'Gul',
 'Gul pikétröja från Freaky Fashion',
 1199,
-'FF_gul_pike.png'
+'FF_Gul_Piké.png'
 ),
 (
 'Freaky Fashion',
@@ -80,7 +81,7 @@ VALUES
 'Grön',
 'Grön pikétröja från Freaky Fashion',
 1199,
-'FF_grön_pike.png'
+'FF_Grön_Piké.png'
 ),
 (
 'Freaky Fashion',
@@ -88,5 +89,5 @@ VALUES
 'Svart',
 'Svart pikétröja från Freaky Fashion',
 1199,
-'FF_svart_pike.png'
+'FF_Svart_Piké.png'
 );
