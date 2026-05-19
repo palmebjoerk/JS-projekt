@@ -19,42 +19,74 @@ image_url
 VALUES
 (
 'Freaky Fashion',
-'T-Shirt',
+'Hoodie',
 'Svart',
-"Svart Freaky Fashion i bomull",
+"Svart Freaky Fashion-hoodie",
 399,
-'Freaky-Fashion-svart-tshirt.png'
-),
-(
-'Freaky Fashion',
-'Sko',
-'Camo',
-'Camofärgade sneakers från Freaky Fashion',
-999,
-'Freaky-Fashion-sko-camo.png'
-),
-(
-'Freaky Fashion',
-'Pikétröja',
-'White',
-'Vit pikétröja från Freaky Fashion',
-1199,
-'Freaky-Fashion-vit-pikétröja.png'
+'FF_svart_hoodie.png'
 ),
 (
 'Freaky Fashion',
 'Hoodie',
 'Blå',
-'Blå hoodie från Freaky Fashion',
-1399,
-'Freaky-Fashion-blå-hoodie.png'
+'Blå Freaky Fashion-hoodie',
+999,
+'FF_blå_hoodie.png'
 ),
 (
-    'Freaky Fashion',
-    'Keps',
-    'Neon',
-    'Neonkepa från Freaky Fashion',
-    649,
-    'neon-freaky-fashion-keps.png'
+'Freaky Fashion',
+'Pikétröja',
+'Blå',
+'Vit pikétröja från Freaky Fashion',
+1199,
+'FF_blå_pike.png'
+),
+(
+'Freaky Fashion',
+'Hoodie',
+'Grön',
+'Grön hoodie från Freaky Fashion',
+1399,
+'FF_grön_hoodie.png'
+),
+(
+'Freaky Fashion',
+'Keps',
+'Neon',
+'Neonkepa från Freaky Fashion',
+649,
+'FF_neon_keps.png'
 
+),
+(
+'Freaky Fashion',
+'Hoodie',
+'Gul',
+'Gul hoodie från Freaky Fashion',
+1399,
+'FF_gul_hoodie.png'
+),
+(
+'Freaky Fashion',
+'Pikétröja',
+'Gul',
+'Gul pikétröja från Freaky Fashion',
+1199,
+'FF_gul_pike.png'
+),
+(
+'Freaky Fashion',
+'Pikétröja',
+'Grön',
+'Grön pikétröja från Freaky Fashion',
+1199,
+'FF_grön_pike.png'
+),
+(
+'Freaky Fashion',
+'Pikétröja',
+'Svart',
+'Svart pikétröja från Freaky Fashion',
+1199,
+'FF_svart_pike.png'
 );
