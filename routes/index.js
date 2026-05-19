@@ -15,7 +15,7 @@ const nameMap = {
   'FF_Grön_Piké':    'Grön Pikétröja',
   'FF_Gul_Piké':     'Gul Pikétröja',
   'FF_Svart_Piké':   'Svart Pikétröja',
-  'FF_Neon_Kepa':    'Neon Keps',
+  'FF_Neon_Kepa':    'Neon Kepa',
 };
 
 function getClothesFromImages() {
@@ -55,6 +55,18 @@ router.get('/', function(req, res, next) {
     pick('piké'),
     pick('kepa'),
   ].filter(Boolean);
+  const clothes = getClothesFromImages();
+  const spotDefs = [
+    { keyword: 'hoodie', label: 'Hoodies' },
+    { keyword: 'piké',   label: 'Pikétröjor' },
+    { keyword: 'kepa',   label: 'Kepsar' },
+  ];
+  const spots = spotDefs
+    .map(({ keyword, label }) => {
+      const item = clothes.find(c => c.name.toLowerCase().includes(keyword));
+      return item ? { ...item, name: label } : null;
+    })
+    .filter(Boolean);
   res.render('index', { title: 'Express', clothes, spots });
 });
 
