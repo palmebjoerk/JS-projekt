@@ -6,12 +6,24 @@ const router = express.Router();
 
 const imagesDir = path.join(__dirname, '..', 'public', 'stylesheets', 'Images');
 
+const nameMap = {
+  'FF_Svart_Hoodie': 'Svart Hoodie',
+  'FF_Blå_Hoodie':   'Blå Hoodie',
+  'FF_Grön_Hoodie':  'Grön Hoodie',
+  'FF_Gul_Hoodie':   'Gul Hoodie',
+  'FF_Blå_Piké':     'Blå Pikétröja',
+  'FF_Grön_Piké':    'Grön Pikétröja',
+  'FF_Gul_Piké':     'Gul Pikétröja',
+  'FF_Svart_Piké':   'Svart Pikétröja',
+  'FF_Neon_Kepa':    'Neon Keps',
+};
+
 function getClothesFromImages() {
   const files = fs.readdirSync(imagesDir).filter(f =>
     /\.(png|jpg|jpeg|gif|webp|svg)$/i.test(f) && !f.toLowerCase().includes('hero')
   );
   return files.map(file => ({
-    name: path.basename(file, path.extname(file)),
+    name: nameMap[path.basename(file, path.extname(file))] || path.basename(file, path.extname(file)),
     image: '/stylesheets/Images/' + file,
     price: 0
   }));
