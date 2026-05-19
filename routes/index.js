@@ -8,7 +8,7 @@ const imagesDir = path.join(__dirname, '..', 'public', 'stylesheets', 'Images');
 
 function getClothesFromImages() {
   const files = fs.readdirSync(imagesDir).filter(f =>
-    /\.(png|jpg|jpeg|gif|webp|svg)$/i.test(f) && !f.toLowerCase().includes('hero image')
+    /\.(png|jpg|jpeg|gif|webp|svg)$/i.test(f) && !f.toLowerCase().includes('hero')
   );
   return files.map(file => ({
     name: path.basename(file, path.extname(file)),
@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
   const pick = (keyword) => clothes.find(c => c.name.toLowerCase().includes(keyword));
   const spots = [
     pick('hoodie'),
-    pick('pike'),
+    pick('piké'),
     pick('kepa'),
   ].filter(Boolean);
   res.render('index', { title: 'Express', clothes, spots });
