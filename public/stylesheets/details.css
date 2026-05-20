@@ -1,0 +1,48 @@
+.product-image img {
+    width: 50rem;
+}
+
+@media (min-width: 640px){
+
+
+
+.product-detail {
+    display: flex;
+    flex-direction: row;
+}
+}
+
+@media (max-width: 639px){
+    .product-detail {
+        display: flex;
+        flex-direction: column;
+    }
+}
+.brand {
+
+    font-size: 12px;
+      padding: 20px;
+
+     
+}
+
+ .product-info h1 {
+
+    padding-left: 20px;
+
+        
+      }
+
+.price {
+
+    padding: 20px;
+}
+
+.description {
+    padding: 20px;
+}
+
+.product-info button {
+
+   
+}

@@ -17,7 +17,7 @@
             <% if (clothes && clothes.length) { %>
                 <% clothes.forEach(function(item) { %>
                     <article class="product-card">
-                        <a href="#" class="product-link">
+                        <a href="/products/<%= (item.color + '-' + item.model).toLowerCase().replace(/ /g, '-').replace(/å/g, 'a') %>" class="product-link">
                             <div class="product-img-wrap">
                                 <img src="<%= item.image %>" alt="<%= item.name %>">
                                 <button class="favorite-btn"
@@ -32,8 +32,8 @@
                             </div>
                             <div class="product-meta">
                                 <div class="product-info">
-                                    <span class="product-name"><%= item.name %></span>
-                                    <p class="product-subtext"><%= item.brand %> <%= item.model %> | <%= item.color %></p>
+                                    <span class="product-name"> <%= item.color %> <%= item.model %> </span>
+                                    <p class="product-subtext"><%= item.brand %> </p>
                                 </div>
                                 <span class="product-price">
                                     <% if (item.price > 0) { %>

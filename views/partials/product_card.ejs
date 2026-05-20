@@ -1,7 +1,9 @@
-<div class="product-card">
-    <img src="<%= product.image %>" alt="<%= product.name %>">
+<a href="/products/<%= product.model.toLowerCase().replace(/ /g, '-').replace(/å/g, 'a') %>" style="text-decoration: none; color: inherit;">
+    <div class="product-card">
+        <img src="<%= product.image_url %>" alt="<%= product.model %>">
 
-    <h3><%= product.name %></h3>
+        <h3><%= product.model %></h3>
 
-    <p><%= product.price %> kr</p>
-</div>
+        <p><%= product.price %> kr</p>
+    </div>
+</a>
