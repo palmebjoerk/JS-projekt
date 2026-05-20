@@ -1,78 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/favorites.css">
+    <title>Favoriter</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/header.css">
-        <link rel="stylesheet" href="/stylesheets/footer.css">
-
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/favorites.css">
 </head>
 <body>
   <%- include("partials/header.ejs"); %>
   <main>
     <section class="news-section">
-
-  <h2 class="section-title">Favoriter</h2>
-
-  <div class="products-grid">
-
-    <!-- Produkt -->
-    <article class="product-card">
-      <div class="product-image">
-        <button class="favorite-btn">♡</button>
-      </div>
-
-      <div class="product-info">
-        <div>
-          <p class="product-name">Svart T-Shirt</p>
-          <p class="product-brand">Levis</p>
-        </div>
-
-        <p class="product-price">199 SEK</p>
-      </div>
-    </article>
-
-    <!-- Produkt -->
-    <article class="product-card">
-      <div class="product-image">
-        <button class="favorite-btn">♡</button>
-      </div>
-
-      <div class="product-info">
-        <div>
-          <p class="product-name">Svart T-Shirt</p>
-          <p class="product-brand">Levis</p>
-        </div>
-
-        <p class="product-price">199 SEK</p>
-      </div>
-    </article>
-
-    <!-- Produkt -->
-    <article class="product-card">
-      <div class="product-image">
-        <button class="favorite-btn">♡</button>
-      </div>
-
-      <div class="product-info">
-        <div>
-          <p class="product-name">Svart T-Shirt</p>
-          <p class="product-brand">Levis</p>
-        </div>
-
-        <p class="product-price">199 SEK</p>
-      </div>
-    </article>
-
-  </div>
-
-</section>
+      <h2 class="section-title">Favoriter</h2>
+      <div class="products-grid product-grid" id="favorites-grid"></div>
+    </section>
   </main>
   <%- include("partials/footer.ejs"); %>
-
-
-    
+  <script src="/javascripts/favorites.js"></script>
 </body>
 </html>

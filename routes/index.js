@@ -20,7 +20,7 @@ const nameMap = {
 
 function getClothesFromImages() {
   const files = fs.readdirSync(imagesDir).filter(f =>
-    /\.(png|jpg|jpeg|gif|webp|svg)$/i.test(f) && !f.toLowerCase().includes('hero')
+    /\.(png|jpg|jpeg|gif|webp|svg)$/i.test(f) && !f.toLowerCase().includes('hero') && !f.toLowerCase().includes('logo')
   );
   return files.map(file => ({
     name: nameMap[path.basename(file, path.extname(file))] || path.basename(file, path.extname(file)),
@@ -59,10 +59,34 @@ router.get('/', function(req, res, next) {
   const spots = spotDefs
     .map(({ keyword, label }) => {
       const item = clothes.find(c => c.name.toLowerCase().includes(keyword));
-      return item ? { ...item, name: label } : null;
+      return item ? { ...item, name: label, keyword } : null;
     })
     .filter(Boolean);
   res.render('index', { title: 'Express', clothes, spots });
+});
+
+/* GET search API (JSON). */
+router.get('/api/search', function(req, res) {
+  const q = (req.query.q || '').toLowerCase().trim();
+  if (!q) return res.json([]);
+  let clothes = getClothesFromDb();
+  if (!clothes.length) clothes = getClothesFromImages();
+  const results = clothes
+    .filter(c => c.name.toLowerCase().includes(q))
+    .slice(0, 8)
+    .map(c => ({ id: c.id, name: c.name, image: c.image, price: c.price, keyword: q }));
+  res.json(results);
+});
+
+/* GET category page. */
+router.get('/category/:keyword', function(req, res, next) {
+  let clothes = getClothesFromDb();
+  if (!clothes.length) clothes = getClothesFromImages();
+  const keyword = req.params.keyword.toLowerCase();
+  const filtered = clothes.filter(c => c.name.toLowerCase().includes(keyword));
+  const labels = { hoodie: 'Hoodies', 'piké': 'Pikétröjor', kepa: 'Kepsar' };
+  const title = labels[keyword] || keyword;
+  res.render('category', { title, clothes: filtered });
 });
 
 /* GET basket page. */

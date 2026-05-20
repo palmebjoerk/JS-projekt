@@ -20,7 +20,15 @@
                         <a href="/products/<%= (item.color + '-' + item.model).toLowerCase().replace(/ /g, '-').replace(/å/g, 'a') %>" class="product-link">
                             <div class="product-img-wrap">
                                 <img src="<%= item.image %>" alt="<%= item.name %>">
-                                <button class="favorite-btn" aria-label="Spara till favoriter">❤</button>
+                                <button class="favorite-btn"
+                                    data-id="<%= item.id || item.image %>"
+                                    data-name="<%= item.name %>"
+                                    data-brand="<%= item.brand || '' %>"
+                                    data-model="<%= item.model || '' %>"
+                                    data-color="<%= item.color || '' %>"
+                                    data-price="<%= item.price %>"
+                                    data-image="<%= item.image %>"
+                                    aria-label="Spara till favoriter">❤</button>
                             </div>
                             <div class="product-meta">
                                 <div class="product-info">
@@ -95,5 +103,6 @@
     </section>
 
     <%- include("partials/footer.ejs"); %>
+    <script src="/javascripts/favorites.js"></script>
 </body>
 </html>

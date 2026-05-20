@@ -1,0 +1,10 @@
+.favorite-btn.active {
+    color: red;
+}
+
+.empty-favorites {
+    padding: 40px;
+    text-align: center;
+    color: #888;
+    font-size: 1rem;
+}
