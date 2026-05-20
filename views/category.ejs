@@ -1,18 +1,19 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projekt Arbete</title>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/favorites.css">
 </head>
 <body>
     <%- include("partials/header.ejs"); %>
     <main>
-        <%- include("partials/hero.ejs"); %>
-
-
-        <%- include("partials/spots.ejs"); %>
-
+        <h2 style="padding: 16px 0 0 8px;"><%= title %></h2>
         <section class="product-grid">
             <% if (clothes && clothes.length) { %>
                 <% clothes.forEach(function(item) { %>
@@ -48,60 +49,11 @@
                 <% }); %>
             <% } else { %>
                 <article class="product-card empty-state">
-                    <p>Inga produkter att visa än.</p>
+                    <p>Inga produkter att visa.</p>
                 </article>
             <% } %>
         </section>
     </main>
-
-    <section class="footer-panel">
-        <div class="benefit-row">
-            <div class="benefit-item">
-                <span class="benefit-icon">🌍</span>
-                <p>Gratis frakt och returer</p>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-icon">🔒</span>
-                <p>Säkra betalningar</p>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-icon">✈️</span>
-                <p>Expressfrakt</p>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-icon">😊</span>
-                <p>Nyheter varje dag</p>
-            </div>
-        </div>
-
-        <div class="footer-menu">
-            <div class="menu-block">
-                <h3>Shopping</h3>
-                <ul>
-                    <li><a href="#">Vinterjackor</a></li>
-                    <li><a href="#">Pufferjackor</a></li>
-                    <li><a href="#">Kappa</a></li>
-                    <li><a href="#">Trenchcoats</a></li>
-                </ul>
-            </div>
-            <div class="menu-block">
-                <h3>Mina Sidor</h3>
-                <ul>
-                    <li><a href="#">Mina Ordrar</a></li>
-                    <li><a href="#">Mitt Konto</a></li>
-                </ul>
-            </div>
-            <div class="menu-block">
-                <h3>Kundtjänst</h3>
-                <ul>
-                    <li><a href="#">Kontakta oss</a></li>
-                    <li><a href="#">Vanliga frågor</a></li>
-                    <li><a href="#">Returer</a></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
     <%- include("partials/footer.ejs"); %>
     <script src="/javascripts/favorites.js"></script>
 </body>

@@ -16,17 +16,18 @@
     <header class="site-header">
         <div class="header-top">
             <div class="header-logo-row">
-                <img class="logo" src="/stylesheets/Images/Freaky-Fashion-Logo.png" alt="Logotyp">
+                <a href="/"><img class="logo" src="/stylesheets/Images/Freaky-Fashion-Logo.png" alt="Logotyp"></a>
             </div>
 
             <div class="header-search-icons-row">
                 <div class="search-row">
-                    <input type="text" class="search-input" placeholder="Sök produkt">
+                    <input type="text" class="search-input" id="search-input" placeholder="Sök produkt" autocomplete="off">
+                    <ul class="search-dropdown" id="search-dropdown"></ul>
                 </div>
 
                 <div class="header-right icons">
-                    <a href="#" aria-label="Favoriter" class="icon-btn">❤</a>
-                    <a href="#" aria-label="Kundvagn" class="icon-btn">🛒</a>
+                    <a href="/favorites" aria-label="Favoriter" class="icon-btn">❤</a>
+                    <a href="/basket" aria-label="Kundvagn" class="icon-btn">🛒</a>
                 </div>
             </div>
         </div>
@@ -40,3 +41,4 @@
             </ul>
         </nav>
     </header>
+    <script src="/javascripts/search.js"></script>
