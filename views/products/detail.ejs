@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= product.model %></title>
+    <link rel="stylesheet" href="/stylesheets/details.css">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+</head>
+<body>
+    <%- include("../partials/header.ejs"); %>
+    <div class="mobile-shell">
+        <div class="content-frame">
+            <main>
+                <article class="product-detail">
+                    <img class="product-image" src="<%= product.image_url ? (product.image_url.startsWith('/') ? product.image_url : '/stylesheets/Images/' + product.image_url) : '/stylesheets/Images/placeholder.jpg' %>" alt="<%= product.model %>">
+
+                    <div class="product-info">
+                        <h1><%= product.color %> <%= product.model %></h1>
+                        <p class="brand"><%= product.brand %></p>
+                        <p class="description"><%= product.description %></p>
+                        <p class="price"><%= product.price %> SEK</p>
+                        <button type="button" class="add-to-cart">Lägg i varukorg</button>
+                    </div>
+                </article>
+
+                <!-- Butiksförmåner -->
+                <ul class="benefits" aria-label="Butiksförmåner">
+                    <li><span class="benefit-icon">🌍</span>Gratis frakt och returer</li>
+                    <li><span class="benefit-icon">🔒</span>Expressfrakt</li>
+                    <li><span class="benefit-icon">✈️</span>Säkra betalningar</li>
+                    <li><span class="benefit-icon">😊</span>Nyheter varje dag</li>
+                </ul>
+            </main>
+        </div>
+    </div>
+    <%- include("../partials/footer.ejs"); %>
+</body>
+</html>
