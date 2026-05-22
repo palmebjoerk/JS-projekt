@@ -1,31 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/register.css">
+    <title>Skapa konto - Freaky Fashion</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/header.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
+    <link rel="stylesheet" href="/stylesheets/login.css">
 </head>
 <body>
+    <%- include("partials/header.ejs") %>
     <main>
-    <%- include("partials/header.ejs"); %>
-    <div class="register_account">
-        <h1>Registrera Konto</h1>
+        <div class="auth-container">
+            <div class="auth-card">
+                <h1>Skapa konto</h1>
+                <% if (error) { %>
+                <div class="auth-error"><%= error %></div>
+                <% } %>
+                <form method="POST" action="/register">
+                    <div class="auth-field">
+                        <label for="email">E-post</label>
+                        <input type="email" id="email" name="email" placeholder="din@epost.se" required>
+                    </div>
+                    <div class="auth-field">
+                        <label for="password">Lösenord</label>
+                        <input type="password" id="password" name="password" placeholder="Lösenord" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Skapa konto</button>
+                </form>
+                <div class="auth-link">
+                    Har du redan ett konto? <a href="/login">Logga in</a>
+                </div>
+            </div>
         </div>
-         <div class="Login">
-          <p>E-post</p>
-          <div class="email-row">
-         <input type="text" class="email-input">
-         </div>
-         <p>Lösenord</p>
-         <div class="password-row">
-         <input type="text" class="password-input">
-    </div>
-    </div>
-    </main
-    <%- include("partials/footer.ejs"); %>
-    
+    </main>
+    <%- include("partials/footer.ejs") %>
 </body>
 </html>
