@@ -1,8 +1,13 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const db = require('../data/db');
 const router = express.Router();
+
+function hashPassword(password) {
+  return crypto.createHash('sha256').update(password).digest('hex');
+}
 
 const imagesDir = path.join(__dirname, '..', 'public', 'stylesheets', 'Images');
 
@@ -54,7 +59,7 @@ router.get('/', function(req, res, next) {
   const spotDefs = [
     { keyword: 'hoodie', label: 'Hoodies' },
     { keyword: 'piké',   label: 'Pikétröjor' },
-    { keyword: 'keps',   label: 'Kepsar' },
+    { keyword: 'kepa',   label: 'Kepsar' },
   ];
   const spots = spotDefs
     .map(({ keyword, label }) => {
@@ -84,7 +89,7 @@ router.get('/categories/:keyword', function(req, res, next) {
   if (!clothes.length) clothes = getClothesFromImages();
   const keyword = req.params.keyword.toLowerCase();
   const filtered = clothes.filter(c => c.name.toLowerCase().includes(keyword));
-  const labels = { 'hoodie': 'Hoodies', 'piké': 'Pikétröjor', 'keps': 'Kepsar' };
+  const labels = { 'hoodie': 'Hoodies', 'piké': 'Pikétröjor', 'kepa': 'Kepsar' };
   const title = labels[keyword] || keyword;
   res.render('category', { title, clothes: filtered });
 });
@@ -112,7 +117,21 @@ router.get('/index', function(req, res, next) {
 
 /* GET login page. */
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Login' });
+  res.render('login', { title: 'Login', error: null });
+});
+
+/* POST login. */
+router.post('/login', function(req, res) {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.render('login', { title: 'Login', error: 'E-post och lösenord krävs.' });
+  }
+  const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email.toLowerCase());
+  if (!user || user.password !== hashPassword(password)) {
+    return res.render('login', { title: 'Login', error: 'Fel e-post eller lösenord.' });
+  }
+  res.cookie('user_email', user.email, { maxAge: 86400000, httpOnly: true });
+  res.redirect('/');
 });
 
 /* GET news page. */
@@ -122,7 +141,28 @@ router.get('/news', function(req, res, next) {
 
 /* GET register page. */
 router.get('/register', function(req, res, next) {
-  res.render('register', { title: 'Register' });
+  res.render('register', { title: 'Register', error: null });
+});
+
+/* POST register. */
+router.post('/register', function(req, res) {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.render('register', { title: 'Register', error: 'E-post och lösenord krävs.' });
+  }
+  const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(email.toLowerCase());
+  if (existing) {
+    return res.render('register', { title: 'Register', error: 'E-postadressen används redan.' });
+  }
+  db.prepare('INSERT INTO users (email, password) VALUES (?, ?)').run(email.toLowerCase(), hashPassword(password));
+  res.cookie('user_email', email.toLowerCase(), { maxAge: 86400000, httpOnly: true });
+  res.redirect('/');
+});
+
+/* GET logout. */
+router.get('/logout', function(req, res) {
+  res.clearCookie('user_email');
+  res.redirect('/');
 });
 
 /* GET search page. */
