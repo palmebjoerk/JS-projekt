@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favoriter</title>
+    <title>Mina favoriter</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/header.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
-    <link rel="stylesheet" href="/stylesheets/products.css">
     <link rel="stylesheet" href="/stylesheets/favorites.css">
 </head>
 <body>
   <%- include("partials/header.ejs"); %>
   <main>
-    <section class="news-section">
-      <h2 class="section-title">Favoriter</h2>
-      <div class="products-grid product-grid" id="favorites-grid"></div>
-    </section>
+    <h1 class="fav-heading">Mina favoriter</h1>
+    <div class="fav-grid" id="favorites-grid"></div>
   </main>
   <%- include("partials/footer.ejs"); %>
   <script src="/javascripts/favorites.js"></script>
