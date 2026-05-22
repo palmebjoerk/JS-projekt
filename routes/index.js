@@ -54,7 +54,7 @@ router.get('/', function(req, res, next) {
   const spotDefs = [
     { keyword: 'hoodie', label: 'Hoodies' },
     { keyword: 'piké',   label: 'Pikétröjor' },
-    { keyword: 'kepa',   label: 'Kepsar' },
+    { keyword: 'keps',   label: 'Kepsar' },
   ];
   const spots = spotDefs
     .map(({ keyword, label }) => {
@@ -79,12 +79,12 @@ router.get('/api/search', function(req, res) {
 });
 
 /* GET category page. */
-router.get('/category/:keyword', function(req, res, next) {
+router.get('/categories/:keyword', function(req, res, next) {
   let clothes = getClothesFromDb();
   if (!clothes.length) clothes = getClothesFromImages();
   const keyword = req.params.keyword.toLowerCase();
   const filtered = clothes.filter(c => c.name.toLowerCase().includes(keyword));
-  const labels = { hoodie: 'Hoodies', 'piké': 'Pikétröjor', kepa: 'Kepsar' };
+  const labels = { 'hoodie': 'Hoodies', 'piké': 'Pikétröjor', 'keps': 'Kepsar' };
   const title = labels[keyword] || keyword;
   res.render('category', { title, clothes: filtered });
 });

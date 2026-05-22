@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Varukorgen</title>
     <link rel="stylesheet" href="/stylesheets/basket.css">
     <link rel="stylesheet" href="/stylesheets/header.css">
 </head>
@@ -16,7 +16,6 @@
 
   <div class="cart-table-wrapper">
     <table class="cart-table">
-
       <thead>
         <tr>
           <th>Produkt</th>
@@ -25,51 +24,19 @@
           <th>Antal</th>
         </tr>
       </thead>
-
-      <tbody>
-
-        <tr>
-          <td>Svart T-Shirt</td>
-          <td>199 kr</td>
-          <td>199 kr</td>
-          <td>
-            <select>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select>
-          </td>
-        </tr>
-
-        <tr>
-          <td>Vit T-Shirt</td>
-          <td>199 kr</td>
-          <td>398 kr</td>
-          <td>
-            <select>
-              <option>2</option>
-              <option>1</option>
-              <option>3</option>
-              <option>4</option>
-            </select>
-          </td>
-        </tr>
-
+      <tbody id="cart-tbody">
       </tbody>
-
     </table>
   </div>
 
   <div class="checkout-wrapper">
-    <button class="checkout-btn">
-      Till kassan
-    </button>
+    <p class="cart-total-label">Totalt: <strong id="cart-total">0 kr</strong></p>
+    <button class="checkout-btn">Till kassan</button>
   </div>
 
 </section>
   </main>
 <%- include("partials/footer.ejs"); %>
-    
+<script src="/javascripts/basket.js"></script>
 </body>
 </html>
