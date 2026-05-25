@@ -90,19 +90,19 @@ VALUES
 'Svart pikétröja från Freaky Fashion',
 799,
 'FF_Svart_Piké.png'
-)
+),
 ('Freaky Fashion',
 'Keps',
 'Guld',
 'Guldkepa från Freaky Fashion',
 649,
-'FF_Guld_Kepa.png')
+'FF_Guld_Kepa.png'),
 ('Freaky Fashion',
 'Keps',
 'Rosa',
 'Rosakepa från Freaky Fashion',
 649,
-'FF_Rosa_Kepa.png')
+'FF_Rosa_Kepa.png'),
 ('Freaky Fashion',
 'Keps',
 'Camo',
