@@ -11,25 +11,26 @@ router.get("/", (req, res) => {
 // GET enskild produkt via dynamisk route
 router.get("/:productName", (req, res) => {
     const { productName } = req.params;
-    
-    // Hämta alla produkter och sök efter matchning
-    const products = db.prepare(`
-        SELECT * FROM clothes
-    `).all();
-    
+
+    const products = db.prepare(`SELECT * FROM clothes`).all();
+
     const product = products.find(p => {
         const slug = (p.color + '-' + p.model).toLowerCase().replace(/ /g, '-').replace(/å/g, 'a');
         return slug === productName.toLowerCase();
     });
-    
+
     if (!product) {
-        return res.status(404).render("error", { 
+        return res.status(404).render("error", {
             message: "Produkt hittades inte",
             error: { status: 404, stack: '' }
         });
     }
-    
-    res.render("products/detail", { product });
+
+    const similar = products
+        .filter(p => p.model === product.model && p.id !== product.id)
+        .slice(0, 6);
+
+    res.render("products/detail", { product, similar });
 });
 
 module.exports = router;
