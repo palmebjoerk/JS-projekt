@@ -11,6 +11,53 @@ img {
   width: 100%;
 }
 
+.spots-section {
+  display: flex;
+  gap: 12px;
+  padding: 20px 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.spot-item {
+  position: relative;
+  flex: 1;
+  min-width: 140px;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  aspect-ratio: 3 / 4;
+}
+
+.spot-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.spot-item:hover img {
+  transform: scale(1.05);
+}
+
+.spot-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.6));
+  color: white;
+  padding: 16px 12px 12px;
+}
+
+.spot-overlay h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
 /* Mobil first, Gömmer 5 eller mer kort! */
 .product-card:nth-child(n+5) {
   display: none;

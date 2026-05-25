@@ -5,5 +5,15 @@
         <h3><%= product.model %></h3>
 
         <p><%= product.price %> kr</p>
+
+<button class="basket-btn"
+  data-id="<%= product.id %>"
+  data-name="<%= product.model %>"
+  data-price="<%= product.price %>"
+  data-image="<%= product.image_url %>">
+  Lägg till i varukorg
+</button>
+
+
     </div>
 </a>

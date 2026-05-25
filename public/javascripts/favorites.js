@@ -58,19 +58,19 @@ function renderFavoritesPage() {
   }
 
   grid.innerHTML = favs.map(item => `
-    <article class="product-card">
-      <div class="product-img-wrap">
+    <article class="fav-card">
+      <div class="fav-img-wrap">
         <img src="${item.image}" alt="${item.name}">
-        <button class="favorite-btn active" data-id="${item.id}" data-name="${item.name}"
-          data-brand="${item.brand}" data-model="${item.model}" data-color="${item.color}"
-          data-price="${item.price}" data-image="${item.image}" aria-label="Ta bort från favoriter">❤</button>
+        <button class="favorite-btn active"
+          data-id="${item.id}" data-name="${item.name}"
+          data-brand="${item.brand}" data-model="${item.model}"
+          data-color="${item.color}" data-price="${item.price}"
+          data-image="${item.image}" aria-label="Ta bort från favoriter">❤</button>
       </div>
-      <div class="product-meta">
-        <div class="product-info">
-          <span class="product-name">${item.name}</span>
-          <p class="product-subtext">${item.brand} ${item.model} | ${item.color}</p>
-        </div>
-        <span class="product-price">${item.price > 0 ? item.price + ' kr' : 'Kontakta oss'}</span>
+      <div class="fav-info">
+        <span class="fav-name">${item.color} ${item.model}</span>
+        <p class="fav-sub">${item.brand}</p>
+        <span class="fav-price">${item.price > 0 ? item.price + ' kr' : 'Kontakta oss'}</span>
       </div>
     </article>
   `).join('');

@@ -28,6 +28,11 @@
                 <div class="header-right icons">
                     <a href="/favorites" aria-label="Favoriter" class="icon-btn">❤</a>
                     <a href="/basket" aria-label="Kundvagn" class="icon-btn">🛒</a>
+                    <% if (typeof user !== 'undefined' && user) { %>
+                    <a href="/logout" aria-label="Logga ut" class="icon-btn" title="Inloggad som <%= user %>">👤</a>
+                    <% } else { %>
+                    <a href="/login" aria-label="Logga in" class="icon-btn">👤</a>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -42,3 +47,4 @@
         </nav>
     </header>
     <script src="/javascripts/search.js"></script>
+    <script src="/javascripts/basket.js"></script>
