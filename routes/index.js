@@ -179,6 +179,41 @@ router.get('/products', function(req, res, next) {
   res.render('products', { title: 'Products' });
 });
 
+router.get('/admin/products/new', function(req, res, next) {
+  res.render('admin/products/new', { title: 'New Product' });
+});
+
+router.get('/admin/products', function(req, res, next) {
+  const products = db.prepare(
+    'SELECT id, brand, model, color, description, price, image_url FROM clothes'
+  ).all();
+
+  res.render('admin/products', {
+    title: 'Admin - Products',
+    products,
+    message: null
+  });
+});
+
+router.post('/admin/products/delete', function(req, res, next) {
+  const productId = Number(req.body.id);
+  let message = null;
+  if (productId) {
+    db.prepare('DELETE FROM clothes WHERE id = ?').run(productId);
+    message = 'Produkten är nu borttagen.';
+  }
+
+  const products = db.prepare(
+    'SELECT id, brand, model, color, description, price, image_url FROM clothes'
+  ).all();
+
+  res.render('admin/products', {
+    title: 'Admin - Products',
+    products,
+    message
+  });
+});
+
 /* POST new product. */
 router.post('/products/new', function(req, res, next) {
   var stmt = db.prepare(
