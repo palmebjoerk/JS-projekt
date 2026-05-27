@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Administration - Produkter</title>
+  <link rel="stylesheet" href="/stylesheets/admin_products.css"/>
+</head>
+<body>
+
+  <!-- Kontrollera att användaren är admin -->
+  <!-- Exempel:
+    if (!user || user.admin !== 1) {
+      window.location.href = "/";
+    }
+  -->
+
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Administration</h2>
+
+      <nav>
+        <a href="#" class="active">Produkter</a>
+        <a href="#">Kategorier</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+
+      <div class="top-bar">
+        <h1>Produkter</h1>
+
+        <button class="new-product-btn">
+          <a href="/admin/products/new">
+            Ny produkt
+          </a>
+        </button>
+      </div>
+
+      <!-- När man klickar på knappen skall man skickas till sidan "Ny produkt" -->
+      <!-- Exempel:
+        <a href="/admin/products/new" class="new-product-btn">Ny produkt</a>
+      -->
+
+      <% if (message) { %>
+        <div class="admin-message">
+          <p><%= message %></p>
+        </div>
+      <% } %>
+
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>Namn</th>
+            <th>SKU</th>
+            <th>Pris</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% if (products && products.length) { %>
+            <% products.forEach(function(product) { %>
+              <tr>
+                <td><%= product.brand %> <%= product.model %></td>
+                <td><%= product.id %></td>
+                <td><%= product.price %> kr</td>
+                <td class="delete-cell">
+                  <form method="POST" action="/admin/products/delete" onsubmit="return confirm('Är du säker på att du vill ta bort produkten?');">
+                    <input type="hidden" name="id" value="<%= product.id %>">
+                    <button class="delete-btn" type="submit">🗑</button>
+                  </form>
+                </td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+              <tr>
+                <td colspan="4">Inga produkter hittades.</td>
+              </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+
+    </main>
+  </div>
+
+</body>
+</html>
