@@ -143,7 +143,18 @@ router.post('/login', function(req, res) {
 
 /* GET news page. */
 router.get('/news', function(req, res, next) {
-  res.render('news', { title: 'News' });
+  const kepsar  = db.prepare("SELECT * FROM clothes WHERE model = 'Keps' LIMIT 2").all();
+  const hoodies = db.prepare("SELECT * FROM clothes WHERE model = 'Hoodie' LIMIT 1").all();
+  const pikes   = db.prepare("SELECT * FROM clothes WHERE model = 'Pikétröja' LIMIT 1").all();
+
+  const newsProducts = [...kepsar, ...hoodies, ...pikes].map(p => ({
+    ...p,
+    image: p.image_url
+      ? (p.image_url.startsWith('/') ? p.image_url : '/stylesheets/Images/' + p.image_url)
+      : ''
+  }));
+
+  res.render('news', { title: 'Nyheter', newsProducts });
 });
 
 /* GET register page. */
