@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!items.length) { close(); return; }
         dropdown.innerHTML = items.map(item => `
           <li>
-            <a href="/category/${encodeURIComponent(q)}">
+            <a href="/categories/${encodeURIComponent(q)}">
               <img src="${item.image}" alt="${item.name}">
               <span class="result-name">${item.name}</span>
               <span class="result-price">${item.price > 0 ? item.price + ' kr' : 'Kontakta oss'}</span>

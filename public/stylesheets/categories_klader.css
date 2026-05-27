@@ -22,6 +22,11 @@
     gap: 16px;
 }
 
+/* Visa alla produkter (override på style.css som döljer kort 5+) */
+.category-grid .product-card:nth-child(n+5) {
+    display: block;
+}
+
 .category-grid .product-card {
     border-radius: 0;
     box-shadow: none;
