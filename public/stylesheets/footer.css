@@ -2,6 +2,7 @@
     margin-top: 6px;
 }
 
+/* ── Gamla .footer-box (behålls för bakåtkompatibilitet) ──── */
 .footer-box {
     border: 1px solid #444;
     padding: 10px 10px 12px;
@@ -34,7 +35,7 @@
     font-size: 11px;
 }
 
-/* ── Footer-panel (i index.ejs) ─────────────────────────── */
+/* ── Footer-panel (gemensamt för alla sidor) ─────────────── */
 .footer-panel {
     background: #dcdcdc;
     border-top: 1px solid #444;
@@ -52,7 +53,7 @@
 
 .benefit-item {
     display: flex;
-    flex-direction: row;       /* ikon till vänster, text till höger */
+    flex-direction: row;
     align-items: center;
     gap: 14px;
     padding: 10px 0;
@@ -130,17 +131,17 @@
     color: #555;
 }
 
-/* ── Tablet 640px–1023px: benefit 2×2 grid ──────────────── */
+/* ── Tablet ≥ 640px: benefit 4 i rad, meny sida vid sida ─── */
 @media (min-width: 640px) {
     .footer-panel {
         padding: 28px 32px 20px;
     }
 
-    /* Benefit: 2×2 grid, ikon ovan + text under */
+    /* Benefit: alla 4 på en rad med ikon ovan och text under */
     .benefit-row {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
         margin-bottom: 32px;
     }
 
@@ -174,28 +175,36 @@
         gap: 56px;
         justify-content: flex-start;
     }
-
-    /* Dölj gamla site-footer (duplicerar länkarna) */
-    .site-footer {
-        display: none;
-    }
 }
 
-/* ── Desktop ≥ 1024px: benefit 4 i rad ─────────────────── */
+/* ── Desktop ≥ 1024px: mer luft och max-bredd ───────────── */
 @media (min-width: 1024px) {
     .footer-panel {
-        padding: 32px 40px 24px;
+        padding: 36px 60px 28px;
     }
 
-    /* Benefit: alla 4 på en rad */
     .benefit-row {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
-        margin-bottom: 36px;
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+
+    .benefit-icon {
+        width: 58px;
+        height: 58px;
+        font-size: 1.6rem;
+    }
+
+    .benefit-item p {
+        font-size: 0.78rem;
     }
 
     /* Länkkolumner: lite mer luft */
     .footer-menu {
-        gap: 64px;
+        gap: 80px;
+    }
+
+    .footer-panel-brand {
+        font-size: 0.75rem;
+        margin-top: 28px;
     }
 }
