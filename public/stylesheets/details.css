@@ -57,8 +57,14 @@
     margin: 0;
 }
 
+.product-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .add-to-cart {
-    width: 100%;
+    flex: 1;
     padding: 0.85rem;
     background: #111;
     color: #fff;
@@ -69,6 +75,34 @@
 
 .add-to-cart:hover {
     background: #333;
+}
+
+/* Hjärtknapp på detaljsidan */
+.detail-fav-btn {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,.12);
+    transition: border-color 0.15s, color 0.15s;
+    color: #aaa;
+}
+
+.detail-fav-btn:hover {
+    color: #e00;
+    border-color: #e00;
+}
+
+.detail-fav-btn.active {
+    color: #e00;
+    border-color: #e00;
 }
 
 /* Benefits */

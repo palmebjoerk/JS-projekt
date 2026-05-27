@@ -28,7 +28,7 @@ body {
 .header-search-icons-row {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     justify-content: space-between;
     width: 100%;
 }
@@ -40,8 +40,7 @@ body {
 
 .search-row {
     flex: 1;
-    min-width: 220px;
-    max-width: 100%;
+    min-width: 0;
     position: relative;
 }
 
@@ -115,6 +114,7 @@ body {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
+    flex-shrink: 0;
 }
 
 .icon-btn {

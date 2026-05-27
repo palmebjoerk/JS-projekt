@@ -83,6 +83,13 @@ router.get('/api/search', function(req, res) {
   res.json(results);
 });
 
+/* GET Kläder category page – måste ligga FÖRE wildcard-routen */
+router.get('/categories/klader', function(req, res, next) {
+  let clothes = getClothesFromDb();
+  if (!clothes.length) clothes = getClothesFromImages();
+  res.render('categories/klader', { title: 'Kläder', clothes });
+});
+
 /* GET category page. */
 router.get('/categories/:keyword', function(req, res, next) {
   let clothes = getClothesFromDb();
@@ -200,9 +207,5 @@ router.get('/admin', function(req, res, next) {
   res.render('admin/index', { title: 'Admin' });
 });
 
-/* Get categories page. */
-router.get('/categories/klader', function(req, res, next) {
-res.render('categories/klader', { title: 'Kläder' });
-});
 
 module.exports = router;
