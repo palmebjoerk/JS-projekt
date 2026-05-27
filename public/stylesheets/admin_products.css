@@ -141,3 +141,69 @@ body {
   border-radius: 6px;
   margin-bottom: 20px;
 }
+
+/* Form Container */
+.form-container {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 600px;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.product-form label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.product-form input,
+.product-form textarea,
+.product-form select {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  transition: border-color 0.2s;
+}
+
+.product-form input:focus,
+.product-form textarea:focus,
+.product-form select:focus {
+  outline: none;
+  border-color: #222;
+  box-shadow: 0 0 0 2px rgba(34, 34, 34, 0.1);
+}
+
+.product-form textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: Arial, sans-serif;
+}
+
+.product-form button {
+  background: #222;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-self: flex-start;
+  margin-top: 6px;
+}
+
+.product-form button:hover {
+  background: #444;
+}

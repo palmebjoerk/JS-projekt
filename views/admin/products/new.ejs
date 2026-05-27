@@ -3,47 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
-    <link rel="stylesheet" href="stylesheets/admin_products_new.css">
+    <title>Administration - Ny produkt</title>
+    <link rel="stylesheet" href="/stylesheets/admin_products.css">
 </head>
 <body>
 
-    <header class="admin-header">
-        <h1>Administration</h1>
-    </header>
-    
-    <main>
-        <div class="container">
-            
-            <aside class="produkter-info" aria-label="Produkter navigation">
-                <h2>Produkter</h2>
-            </aside>
+  <div class="admin-layout">
 
-            <section class="admin-content" aria-label="Ny produkt formulär">
-                <h2>Ny produkt</h2>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Administration</h2>
 
-                <form class="product-form" action="#" method="post">
-                    <!-- Produktnamn -->
-                    <label for="product-name">Namn</label>
-                    <input id="product-name" name="name" type="text">
+      <nav>
+        <a href="/admin/products" class="active">Produkter</a>
+        <a href="#">Kategorier</a>
+      </nav>
+    </aside>
 
-                    <label for="product-description">Beskrivning</label>
-                    <textarea id="product-description" name="description" rows="5"></textarea>
+    <!-- Main Content -->
+    <main class="content">
 
-                    <label for="product-image">Bild</label>
-                    <input id="product-image" name="image" type="file" accept="image/*">
+      <div class="top-bar">
+        <h1>Ny produkt</h1>
+      </div>
 
-                    <label for="product-sku">SKU</label>
-                    <input id="product-sku" name="sku" type="text">
+      <div class="form-container">
+        <form class="product-form" action="/products/new" method="post">
+          <!-- Produktnamn -->
+          <label for="product-name">Namn</label>
+          <input id="product-name" name="name" type="text" required>
 
-                    <label for="product-price">Pris</label>
-                    <input id="product-price" name="price" type="number" min="0" step="1" inputmode="numeric">
+          <label for="product-description">Beskrivning</label>
+          <textarea id="product-description" name="description" rows="5"></textarea>
 
-                    <button type="button">Lägg till</button>
-                </form>
-            </section>
-        </div>
+          <label for="product-brand">Märke</label>
+          <input id="product-brand" name="brand" type="text" required>
+
+          <label for="product-image">Bild</label>
+          <input id="product-image" name="image" type="file" accept="image/*">
+
+          <label for="product-sku">SKU</label>
+          <input id="product-sku" name="sku" type="text">
+
+          <label for="product-price">Pris</label>
+          <input id="product-price" name="price" type="number" min="0" step="1" inputmode="numeric">
+
+          <label for="product-date">Publiseringsdatum</label>
+          <input id="product-date" name="date" type="date">
+
+          <label for="product-category">Kategori</label>
+          <select id="product-category" name="category">
+            <option value="">Välj kategori</option>
+            <option value="hoodie">Hoodies</option>
+            <option value="pike">Pikétröjor</option>
+            <option value="keps">Kepsar</option>
+          </select>
+
+          <button type="submit">Lägg till</button>
+        </form>
+      </div>
+
     </main>
+  </div>
 
 </body>
 </html>
