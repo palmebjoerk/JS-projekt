@@ -1,58 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <title>Kläder</title>
     <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <link rel="stylesheet" href="/stylesheets/categories_klader.css">
 </head>
 <body>
-<%- include("partials/header.ejs"); %>
-<main>
+    <%- include("../partials/header.ejs"); %>
 
-  <div class="page">
-    <div class="title">Kläder</div>
+    <main class="category-main">
+        <h1 class="category-title">Kläder</h1>
 
-    <div class="product-list">
+        <section class="category-grid">
+            <% if (clothes && clothes.length) { %>
+                <% clothes.forEach(function(item) { %>
+                    <article class="product-card">
+                        <a href="/products/<%= (item.color + '-' + item.model).toLowerCase().replace(/ /g, '-').replace(/å/g, 'a') %>" class="product-link">
+                            <div class="product-img-wrap">
+                                <img src="<%= item.image %>" alt="<%= item.color %> <%= item.model %>">
+                                <button class="favorite-btn"
+                                    data-id="<%= item.id || item.image %>"
+                                    data-name="<%= item.name %>"
+                                    data-brand="<%= item.brand || '' %>"
+                                    data-model="<%= item.model || '' %>"
+                                    data-color="<%= item.color || '' %>"
+                                    data-price="<%= item.price %>"
+                                    data-image="<%= item.image %>"
+                                    aria-label="Spara till favoriter">❤</button>
+                            </div>
+                            <div class="product-meta">
+                                <div class="product-info">
+                                    <span class="product-name"><%= item.color %> <%= item.model %></span>
+                                    <p class="product-subtext"><%= item.brand %></p>
+                                </div>
+                                <span class="product-price">
+                                    <% if (item.price > 0) { %>
+                                        <%= item.price %> kr
+                                    <% } else { %>
+                                        Kontakta oss
+                                    <% } %>
+                                </span>
+                            </div>
+                        </a>
+                    </article>
+                <% }); %>
+            <% } else { %>
+                <article class="product-card empty-state">
+                    <p>Inga produkter att visa.</p>
+                </article>
+            <% } %>
+        </section>
+    </main>
 
-      <div class="product-card">
-        <div class="image-wrapper">
-          <button class="favorite-btn">♡</button>
+    <section class="footer-panel">
+        <div class="benefit-row">
+            <div class="benefit-item">
+                <span class="benefit-icon">🌍</span>
+                <p>Gratis frakt och returer</p>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">✈️</span>
+                <p>Expressfrakt</p>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🔒</span>
+                <p>Säkra betalningar</p>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">😊</span>
+                <p>Nyheter varje dag</p>
+            </div>
         </div>
 
-        <div class="product-info">
-          <span class="product-name">Svart T-Shirt</span>
-          <span class="product-price">199 SEK</span>
+        <div class="footer-menu">
+            <div class="menu-block">
+                <h3>Shopping</h3>
+                <ul>
+                    <li><a href="#">Vinterjackor</a></li>
+                    <li><a href="#">Pufferjackor</a></li>
+                    <li><a href="#">Kappa</a></li>
+                    <li><a href="#">Trenchcoats</a></li>
+                </ul>
+            </div>
+            <div class="menu-block">
+                <h3>Mina Sidor</h3>
+                <ul>
+                    <li><a href="#">Mina Ordrar</a></li>
+                    <li><a href="#">Mitt Konto</a></li>
+                </ul>
+            </div>
+            <div class="menu-block">
+                <h3>Kundtjänst</h3>
+                <ul>
+                    <li><a href="#">Returpolicy</a></li>
+                    <li><a href="#">Integritetspolicy</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
 
-      <div class="product-card">
-        <div class="image-wrapper">
-          <button class="favorite-btn">♡</button>
-        </div>
+        <p class="footer-panel-brand">&#169; Freaky Fashion</p>
+    </section>
 
-        <div class="product-info">
-          <span class="product-name">Svart T-Shirt</span>
-          <span class="product-price">199 SEK</span>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="image-wrapper">
-          <button class="favorite-btn">♡</button>
-        </div>
-
-        <div class="product-info">
-          <span class="product-name">Svart T-Shirt</span>
-          <span class="product-price">199 SEK</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</main>
-<%- include("partials/footer.ejs"); %>
+    <script src="/javascripts/basket.js"></script>
+    <script src="/javascripts/favorites.js"></script>
 </body>
 </html>

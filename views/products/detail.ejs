@@ -25,13 +25,24 @@
                 <p class="brand"><%= product.brand %></p>
                 <p class="description"><%= product.description %></p>
                 <p class="price"><%= product.price %> SEK</p>
-                <button type="button" class="add-to-cart"
-                    data-id="<%= product.id %>"
-                    data-name="<%= product.color %> <%= product.model %>"
-                    data-price="<%= product.price %>"
-                    data-image="<%= product.image_url ? (product.image_url.startsWith('/') ? product.image_url : '/stylesheets/Images/' + product.image_url) : '' %>">
-                    Lägg i varukorg
-                </button>
+                <div class="product-actions">
+                    <button type="button" class="add-to-cart"
+                        data-id="<%= product.id %>"
+                        data-name="<%= product.color %> <%= product.model %>"
+                        data-price="<%= product.price %>"
+                        data-image="<%= product.image_url ? (product.image_url.startsWith('/') ? product.image_url : '/stylesheets/Images/' + product.image_url) : '' %>">
+                        Lägg i varukorg
+                    </button>
+                    <button type="button" class="detail-fav-btn favorite-btn"
+                        data-id="<%= product.id %>"
+                        data-name="<%= product.color %> <%= product.model %>"
+                        data-brand="<%= product.brand || '' %>"
+                        data-model="<%= product.model || '' %>"
+                        data-color="<%= product.color || '' %>"
+                        data-price="<%= product.price %>"
+                        data-image="<%= product.image_url ? (product.image_url.startsWith('/') ? product.image_url : '/stylesheets/Images/' + product.image_url) : '' %>"
+                        aria-label="Spara till favoriter">❤</button>
+                </div>
             </div>
         </article>
 
@@ -60,17 +71,58 @@
         </section>
         <% } %>
 
-        <ul class="benefits" aria-label="Butiksförmåner">
-            <li><span class="benefit-icon">🌍</span>Gratis frakt och returer</li>
-            <li><span class="benefit-icon">🔒</span>Säkra betalningar</li>
-            <li><span class="benefit-icon">✈️</span>Expressfrakt</li>
-            <li><span class="benefit-icon">😊</span>Nyheter varje dag</li>
-        </ul>
-
     </main>
 
-    <%- include("../partials/footer.ejs"); %>
+    <section class="footer-panel">
+        <div class="benefit-row">
+            <div class="benefit-item">
+                <span class="benefit-icon">🌍</span>
+                <p>Gratis frakt och returer</p>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">✈️</span>
+                <p>Expressfrakt</p>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🔒</span>
+                <p>Säkra betalningar</p>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">😊</span>
+                <p>Nyheter varje dag</p>
+            </div>
+        </div>
+
+        <div class="footer-menu">
+            <div class="menu-block">
+                <h3>Shopping</h3>
+                <ul>
+                    <li><a href="#">Vinterjackor</a></li>
+                    <li><a href="#">Pufferjackor</a></li>
+                    <li><a href="#">Kappa</a></li>
+                    <li><a href="#">Trenchcoats</a></li>
+                </ul>
+            </div>
+            <div class="menu-block">
+                <h3>Mina Sidor</h3>
+                <ul>
+                    <li><a href="#">Mina Ordrar</a></li>
+                    <li><a href="#">Mitt Konto</a></li>
+                </ul>
+            </div>
+            <div class="menu-block">
+                <h3>Kundtjänst</h3>
+                <ul>
+                    <li><a href="#">Returpolicy</a></li>
+                    <li><a href="#">Integritetspolicy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <p class="footer-panel-brand">&#169; Freaky Fashion</p>
+    </section>
     <script src="/javascripts/basket.js"></script>
+    <script src="/javascripts/favorites.js"></script>
     <script>
         (function () {
             const viewport = document.querySelector('.carousel-viewport');

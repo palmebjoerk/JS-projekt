@@ -9,18 +9,23 @@
     <link rel="stylesheet" href="/stylesheets/footer.css">
     <link rel="stylesheet" href="/stylesheets/products.css">
     <link rel="stylesheet" href="/stylesheets/favorites.css">
+    <link rel="stylesheet" href="/stylesheets/categories_klader.css">
 </head>
 <body>
     <%- include("partials/header.ejs"); %>
-    <main>
-        <h2 style="padding: 16px 0 0 8px;"><%= title %></h2>
-        <section class="product-grid">
+
+    <main class="category-main">
+        <h1 class="category-title">
+            Hittade <%= clothes ? clothes.length : 0 %> produkter
+        </h1>
+
+        <section class="category-grid">
             <% if (clothes && clothes.length) { %>
                 <% clothes.forEach(function(item) { %>
                     <article class="product-card">
-                        <a href="#" class="product-link">
+                        <a href="/products/<%= (item.color + '-' + item.model).toLowerCase().replace(/ /g, '-').replace(/å/g, 'a') %>" class="product-link">
                             <div class="product-img-wrap">
-                                <img src="<%= item.image %>" alt="<%= item.name %>">
+                                <img src="<%= item.image %>" alt="<%= item.color %> <%= item.model %>">
                                 <button class="favorite-btn"
                                     data-id="<%= item.id || item.image %>"
                                     data-name="<%= item.name %>"
@@ -33,8 +38,8 @@
                             </div>
                             <div class="product-meta">
                                 <div class="product-info">
-                                    <span class="product-name"><%= item.name %></span>
-                                    <p class="product-subtext"><%= item.brand %> <%= item.model %> | <%= item.color %></p>
+                                    <span class="product-name"><%= item.color %> <%= item.model %></span>
+                                    <p class="product-subtext"><%= item.brand %></p>
                                 </div>
                                 <span class="product-price">
                                     <% if (item.price > 0) { %>
@@ -49,12 +54,62 @@
                 <% }); %>
             <% } else { %>
                 <article class="product-card empty-state">
-                    <p>Inga produkter att visa.</p>
+                    <p>Inga produkter hittades.</p>
                 </article>
             <% } %>
         </section>
     </main>
-    <%- include("partials/footer.ejs"); %>
+
+    <section class="footer-panel">
+        <div class="benefit-row">
+            <div class="benefit-item">
+                <span class="benefit-icon">🌍</span>
+                <p>Gratis frakt och returer</p>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">✈️</span>
+                <p>Expressfrakt</p>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🔒</span>
+                <p>Säkra betalningar</p>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">😊</span>
+                <p>Nyheter varje dag</p>
+            </div>
+        </div>
+
+        <div class="footer-menu">
+            <div class="menu-block">
+                <h3>Shopping</h3>
+                <ul>
+                    <li><a href="#">Vinterjackor</a></li>
+                    <li><a href="#">Pufferjackor</a></li>
+                    <li><a href="#">Kappa</a></li>
+                    <li><a href="#">Trenchcoats</a></li>
+                </ul>
+            </div>
+            <div class="menu-block">
+                <h3>Mina Sidor</h3>
+                <ul>
+                    <li><a href="#">Mina Ordrar</a></li>
+                    <li><a href="#">Mitt Konto</a></li>
+                </ul>
+            </div>
+            <div class="menu-block">
+                <h3>Kundtjänst</h3>
+                <ul>
+                    <li><a href="#">Returpolicy</a></li>
+                    <li><a href="#">Integritetspolicy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <p class="footer-panel-brand">&#169; Freaky Fashion</p>
+    </section>
+
+    <script src="/javascripts/basket.js"></script>
     <script src="/javascripts/favorites.js"></script>
 </body>
 </html>

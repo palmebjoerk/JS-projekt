@@ -33,3 +33,169 @@
     text-align: center;
     font-size: 11px;
 }
+
+/* ── Footer-panel (i index.ejs) ─────────────────────────── */
+.footer-panel {
+    background: #dcdcdc;
+    border-top: 1px solid #444;
+    padding: 20px 16px 16px;
+}
+
+/* ── Mobil < 640px: benefit-lista (ikon vänster, text höger) ── */
+.benefit-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+}
+
+.benefit-item {
+    display: flex;
+    flex-direction: row;       /* ikon till vänster, text till höger */
+    align-items: center;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid #bbb;
+}
+
+.benefit-item:first-child {
+    border-top: 1px solid #bbb;
+}
+
+.benefit-icon {
+    font-size: 1.4rem;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #ccc;
+    flex-shrink: 0;
+}
+
+.benefit-item p {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #222;
+    line-height: 1.3;
+}
+
+/* Länkkolumner – mobil: staplade */
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.menu-block h3 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: #222;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.menu-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-block ul li a {
+    display: block;
+    font-size: 0.75rem;
+    color: #444;
+    text-decoration: none;
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+.menu-block ul li a:hover {
+    color: #111;
+    text-decoration: underline;
+}
+
+/* Copyright – alltid synlig */
+.footer-panel-brand {
+    margin: 20px 0 0;
+    text-align: center;
+    font-size: 0.72rem;
+    color: #555;
+}
+
+/* ── Tablet 640px–1023px: benefit 2×2 grid ──────────────── */
+@media (min-width: 640px) {
+    .footer-panel {
+        padding: 28px 32px 20px;
+    }
+
+    /* Benefit: 2×2 grid, ikon ovan + text under */
+    .benefit-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-bottom: 32px;
+    }
+
+    .benefit-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+        padding: 12px 0;
+        border-bottom: none;
+        border-top: none;
+    }
+
+    .benefit-item:first-child {
+        border-top: none;
+    }
+
+    .benefit-icon {
+        width: 52px;
+        height: 52px;
+        font-size: 1.5rem;
+    }
+
+    .benefit-item p {
+        font-size: 0.72rem;
+    }
+
+    /* Länkkolumner: sida vid sida */
+    .footer-menu {
+        flex-direction: row;
+        gap: 56px;
+        justify-content: flex-start;
+    }
+
+    /* Dölj gamla site-footer (duplicerar länkarna) */
+    .site-footer {
+        display: none;
+    }
+}
+
+/* ── Desktop ≥ 1024px: benefit 4 i rad ─────────────────── */
+@media (min-width: 1024px) {
+    .footer-panel {
+        padding: 32px 40px 24px;
+    }
+
+    /* Benefit: alla 4 på en rad */
+    .benefit-row {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-bottom: 36px;
+    }
+
+    /* Länkkolumner: lite mer luft */
+    .footer-menu {
+        gap: 64px;
+    }
+}
