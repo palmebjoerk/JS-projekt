@@ -28,36 +28,30 @@
       </div>
 
       <div class="form-container">
-        <form class="product-form" action="/products/new" method="post">
-          <!-- Produktnamn -->
-          <label for="product-name">Namn</label>
-          <input id="product-name" name="name" type="text" required>
-
-          <label for="product-description">Beskrivning</label>
-          <textarea id="product-description" name="description" rows="5"></textarea>
+        <% if (typeof message !== 'undefined' && message) { %>
+          <div class="form-message"><%= message %></div>
+        <% } %>
+        <form class="product-form" action="/admin/products/new" method="post" enctype="multipart/form-data">
+          <label for="product-sku">SKU</label>
+          <input id="product-sku" name="sku" type="text" required>
 
           <label for="product-brand">Märke</label>
           <input id="product-brand" name="brand" type="text" required>
 
-          <label for="product-image">Bild</label>
-          <input id="product-image" name="image" type="file" accept="image/*">
+          <label for="product-model">Modell</label>
+          <input id="product-model" name="model" type="text" required>
 
-          <label for="product-sku">SKU</label>
-          <input id="product-sku" name="sku" type="text">
+          <label for="product-color">Färg</label>
+          <input id="product-color" name="color" type="text" required>
+
+          <label for="product-description">Beskrivning</label>
+          <textarea id="product-description" name="description" rows="5" required></textarea>
 
           <label for="product-price">Pris</label>
-          <input id="product-price" name="price" type="number" min="0" step="1" inputmode="numeric">
+          <input id="product-price" name="price" type="number" min="0" step="1" inputmode="numeric" required>
 
-          <label for="product-date">Publiseringsdatum</label>
-          <input id="product-date" name="date" type="date">
-
-          <label for="product-category">Kategori</label>
-          <select id="product-category" name="category">
-            <option value="">Välj kategori</option>
-            <option value="hoodie">Hoodies</option>
-            <option value="pike">Pikétröjor</option>
-            <option value="keps">Kepsar</option>
-          </select>
+          <label for="product-image">Bild</label>
+          <input id="product-image" name="image" type="file" accept="image/*">
 
           <button type="submit">Lägg till</button>
         </form>

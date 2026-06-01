@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const db = require('../data/db');
 const router = express.Router();
 
+
 function hashPassword(password) {
   return crypto.createHash('sha256').update(password).digest('hex');
 }
@@ -36,10 +37,11 @@ function getClothesFromImages() {
 
 function getClothesFromDb() {
   const rows = db.prepare(
-    'SELECT id, brand, model, color, description, price, image_url FROM clothes'
+    'SELECT id, brand, model, color, description, sku, price, image_url FROM clothes'
   ).all();
   return rows.map(row => ({
     id: row.id,
+    sku: row.sku,
     name: `${row.brand} ${row.model}`.trim(),
     brand: row.brand,
     model: row.model,
@@ -48,6 +50,24 @@ function getClothesFromDb() {
     description: row.description,
     color: row.color
   }));
+}
+
+let upload;
+try {
+  const multer = require('multer');
+  const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, imagesDir);
+    },
+    filename: function (req, file, cb) {
+      const unique = Date.now() + '_' + file.originalname.replace(/[^a-zA-Z0-9._-]/g, '_');
+      cb(null, unique);
+    }
+  });
+  upload = multer({ storage });
+} catch (err) {
+  console.warn('multer not available; file upload disabled');
+  upload = { single: () => (req, res, next) => next() };
 }
 
 /* GET home page. */
@@ -183,9 +203,33 @@ router.get('/admin/products/new', function(req, res, next) {
   res.render('admin/products/new', { title: 'New Product' });
 });
 
+router.post('/admin/products/new', upload.single('image'), function(req, res, next) {
+  const { brand, model, color, description, price, sku } = req.body;
+  if (!sku || !sku.trim()) {
+    return res.render('admin/products/new', { title: 'New Product', message: 'SKU krävs.' });
+  }
+  const existing = db.prepare('SELECT id FROM clothes WHERE sku = ?').get(sku);
+  if (existing) {
+    return res.render('admin/products/new', { title: 'New Product', message: 'SKU finns redan. Välj annan.' });
+  }
+  const filename = req.file ? req.file.filename : '';
+  db.prepare(
+    'INSERT INTO clothes (brand, model, color, description, price, image_url, sku) VALUES (?, ?, ?, ?, ?, ?, ?)'
+  ).run(
+    brand,
+    model,
+    color,
+    description,
+    Number(price) || 0,
+    filename,
+    sku
+  );
+  res.redirect('/admin/products');
+});
+
 router.get('/admin/products', function(req, res, next) {
   const products = db.prepare(
-    'SELECT id, brand, model, color, description, price, image_url FROM clothes'
+    'SELECT id, brand, model, color, description, sku, price, image_url FROM clothes'
   ).all();
 
   res.render('admin/products', {
@@ -204,7 +248,7 @@ router.post('/admin/products/delete', function(req, res, next) {
   }
 
   const products = db.prepare(
-    'SELECT id, brand, model, color, description, price, image_url FROM clothes'
+    'SELECT id, brand, model, color, description, sku, price, image_url FROM clothes'
   ).all();
 
   res.render('admin/products', {
@@ -217,13 +261,14 @@ router.post('/admin/products/delete', function(req, res, next) {
 /* POST new product. */
 router.post('/products/new', function(req, res, next) {
   var stmt = db.prepare(
-    'INSERT INTO clothes (brand, model, color, description, price, image_url) VALUES (?, ?, ?, ?, ?, ?)'
+    'INSERT INTO clothes (brand, model, color, description, sku, price, image_url) VALUES (?, ?, ?, ?, ?, ?, ?)'
   );
   stmt.run(
     req.body.brand,
     req.body.model,
     req.body.color,
     req.body.description,
+    req.body.sku,
     Number(req.body.price) || 0,
     req.body.image_url || ''
   );
