@@ -4,8 +4,6 @@ const path = require('path');
 const crypto = require('crypto');
 const db = require('../data/db');
 const router = express.Router();
-
-
 function hashPassword(password) {
   return crypto.createHash('sha256').update(password).digest('hex');
 }
