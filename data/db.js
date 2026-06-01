@@ -24,4 +24,17 @@ db.prepare(`
   )
 `).run();
 
+// Ensure `sku` column exists and has a unique index
+try {
+  const info = db.prepare("PRAGMA table_info('clothes')").all();
+  const hasSku = info.some(col => col.name && col.name.toLowerCase() === 'sku');
+  if (!hasSku) {
+    db.prepare("ALTER TABLE clothes ADD COLUMN sku TEXT").run();
+  }
+  db.prepare("CREATE UNIQUE INDEX IF NOT EXISTS idx_clothes_sku ON clothes(sku)").run();
+} catch (err) {
+  // Migration errors should not crash the app; log to console
+  console.error('DB migration warning:', err && err.message ? err.message : err);
+}
+
 module.exports = db;

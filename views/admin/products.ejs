@@ -66,7 +66,7 @@
             <% products.forEach(function(product) { %>
               <tr>
                 <td><%= product.brand %> <%= product.model %></td>
-                <td><%= product.id %></td>
+                <td><%= product.sku %></td>
                 <td><%= product.price %> kr</td>
                 <td class="delete-cell">
                   <form method="POST" action="/admin/products/delete" onsubmit="return confirm('Är du säker på att du vill ta bort produkten?');">

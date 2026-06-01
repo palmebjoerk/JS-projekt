@@ -4,6 +4,7 @@ CREATE TABLE clothes (
   model TEXT NOT NULL,
   color TEXT NOT NULL,
   description TEXT NOT NULL,
+  sku TEXT NOT NULL UNIQUE,
   price INTEGER NOT NULL,
   image_url TEXT
 );
@@ -13,6 +14,7 @@ brand,
 model,
 color,
 description,
+sku,
 price,
 image_url
 )
@@ -22,6 +24,7 @@ VALUES
 'Hoodie',
 'Svart',
 "Svart Freaky Fashion-hoodie",
+"AAA000",
 999,
 'FF_Svart_Hoodie.png'
 ),
@@ -30,6 +33,7 @@ VALUES
 'Hoodie',
 'Blå',
 'Blå Freaky Fashion-hoodie',
+"AAA001",
 999,
 'FF_Blå_Hoodie.png'
 ),
@@ -38,6 +42,7 @@ VALUES
 'Pikétröja',
 'Blå',
 'Vit pikétröja från Freaky Fashion',
+"AAA002",
 799,
 'FF_Blå_Piké.png'
 ),
@@ -46,6 +51,7 @@ VALUES
 'Hoodie',
 'Grön',
 'Grön hoodie från Freaky Fashion',
+"AAA003",
 999,
 'FF_Grön_Hoodie.png'
 )
@@ -55,6 +61,7 @@ VALUES
 'Keps',
 'Neon',
 'Neonkepa från Freaky Fashion',
+"AAA004",
 649,
 'FF_Neon_Kepa.png'
 
@@ -64,6 +71,7 @@ VALUES
 'Hoodie',
 'Gul',
 'Gul hoodie från Freaky Fashion',
+"AAA005",
 999,
 'FF_Gul_Hoodie.png'
 ),
@@ -72,6 +80,7 @@ VALUES
 'Pikétröja',
 'Gul',
 'Gul pikétröja från Freaky Fashion',
+"AAA006",
 799,
 'FF_Gul_Piké.png'
 ),
@@ -80,6 +89,7 @@ VALUES
 'Pikétröja',
 'Grön',
 'Grön pikétröja från Freaky Fashion',
+"AAA007",
 799,
 'FF_Grön_Piké.png'
 ),
@@ -88,6 +98,7 @@ VALUES
 'Pikétröja',
 'Svart',
 'Svart pikétröja från Freaky Fashion',
+"AAA008",
 799,
 'FF_Svart_Piké.png'
 ),
@@ -95,17 +106,20 @@ VALUES
 'Keps',
 'Guld',
 'Guldkepa från Freaky Fashion',
+"AAA009",
 649,
 'FF_Guld_Kepa.png'),
 ('Freaky Fashion',
 'Keps',
 'Rosa',
 'Rosakepa från Freaky Fashion',
+"AAA010",
 649,
 'FF_Rosa_Kepa.png'),
 ('Freaky Fashion',
 'Keps',
 'Camo',
 'Camokepa från Freaky Fashion',
+"AAA011",
 649,
 'FF_Camo_Kepa.png');
