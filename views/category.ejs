@@ -20,6 +20,7 @@
         </h1>
 
         <section class="category-grid">
+            <%# Kollar att clothes inte är null (clothes &&) och att det finns minst ett element i arrayen (clothes.length) %>
             <% if (clothes && clothes.length) { %>
                 <% clothes.forEach(function(item) { %>
                     <article class="product-card">
@@ -60,7 +61,7 @@
         </section>
     </main>
 
-    <section class="footer-panel">
+    <footer class="footer-panel">
         <div class="benefit-row">
             <div class="benefit-item">
                 <span class="benefit-icon">🌍</span>
@@ -107,7 +108,7 @@
         </div>
 
         <p class="footer-panel-brand">&#169; Freaky Fashion</p>
-    </section>
+    </footer>
 
     <script src="/javascripts/basket.js"></script>
     <script src="/javascripts/favorites.js"></script>
