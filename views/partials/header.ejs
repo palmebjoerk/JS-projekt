@@ -28,6 +28,16 @@
                 <div class="header-right icons">
                     <a href="/favorites" aria-label="Favoriter" class="icon-btn">❤</a>
                     <a href="/basket" aria-label="Kundvagn" class="icon-btn">🛒</a>
+                    <%
+                        /*
+                         * Kontrollerar om användaren är inloggad.
+                         * Variabeln "user" sätts av servern via cookien "user_email" i app.js (res.locals.user).
+                         * typeof-kontrollen behövs för att undvika fel om "user" inte skickats med alls från routen.
+                         *
+                         * Om inloggad  → visa en utloggningsknapp (👤) med tooltip som visar e-postadressen.
+                         * Om utloggad  → visa en inloggningsknapp (👤) som leder till /login.
+                         */
+                    %>
                     <% if (typeof user !== 'undefined' && user) { %>
                     <a href="/logout" aria-label="Logga ut" class="icon-btn" title="Inloggad som <%= user %>">👤</a>
                     <% } else { %>
