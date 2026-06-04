@@ -4,6 +4,24 @@ const path = require('path');
 const crypto = require('crypto');
 const db = require('../data/db');
 const router = express.Router();
+
+function ensureAdmin(req, res, next) {
+  const email = req.cookies && req.cookies.user_email;
+  if (!email) {
+    return res.redirect('/login');
+  }
+  const user = db.prepare('SELECT is_admin FROM users WHERE email = ?').get(email.toLowerCase());
+  if (!user || !user.is_admin) {
+    return res.status(403).render('error', {
+      message: 'Du har inte behörighet att se denna sida.',
+      error: { status: 403, stack: '' }
+    });
+  }
+  next();
+}
+
+router.use('/admin', ensureAdmin);
+
 function hashPassword(password) {
   return crypto.createHash('sha256').update(password).digest('hex');
 }
