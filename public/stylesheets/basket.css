@@ -59,6 +59,7 @@
     display: flex;
     justify-content: center;
     margin-top: 40px;
+    gap: 24px;
   }
 
   .checkout-btn {
