@@ -58,14 +58,3 @@ img {
   font-weight: 700;
 }
 
-/* Mobil first, Gömmer 5 eller mer kort! */
-.product-card:nth-child(n+5) {
-  display: none;
-}
-
-/* För tablets och större skärmar visas alla kort */
-@media (min-width: 640px) {
-  .product-card:nth-child(n+5) {
-    display: block;
-  }
-}

@@ -68,36 +68,39 @@
     box-shadow: 0 1px 4px rgba(0,0,0,0.15);
   }
 
-  .product-info {
-    margin-top: 8px;
+  .news-section .product-info {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 8px;
+    padding: 8px 12px;
+    border-top: 1px solid #f0f0f0;
   }
 
-  .product-name {
-    font-size: 13px;
+  .news-section .product-name {
+    font-size: 0.9rem;
+    font-weight: 600;
     color: #111;
     margin-bottom: 3px;
   }
 
-  .product-brand {
-    font-size: 11px;
-    color: #777;
+  .news-section .product-brand {
+    font-size: 0.85rem;
+    color: grey;
   }
 
-  .product-price {
-    font-size: 12px;
+  .news-section .product-price {
+    font-size: 0.9rem;
+    font-weight: 700;
     color: #222;
     white-space: nowrap;
-    margin-top: 1px;
   }
 
   /* Mobilanpassning */
-  @media (max-width: 480px) {
+  @media (max-width: 640px) {
     .products-grid {
-      gap: 18px 8px;
+      grid-template-columns: 1fr;
+      gap: 18px 0;
     }
 
     .section-title {
