@@ -16,7 +16,7 @@
 
       <nav>
         <a href="/admin/products" class="active">Produkter</a>
-        <a href="#">Kategorier</a>
+       <a href="/admin/categories">Kategorier</a>
       </nav>
     </aside>
 
@@ -50,8 +50,23 @@
           <label for="product-price">Pris</label>
           <input id="product-price" name="price" type="number" min="0" step="1" inputmode="numeric" required>
 
+         
+
           <label for="product-image">Bild</label>
           <input id="product-image" name="image" type="file" accept="image/*">
+
+           <label for="product-date">Publiceringsdatum</label>
+          <input id="product-date" name="date" type="date" required>
+
+            <label for="product-category">Kategori</label>
+            <select id="product-category" name="category" required>
+              <option value="">Välj kategori</option>
+              <% if (categories && categories.length) { %>
+                <% categories.forEach(function(category) { %>
+                  <option value="<%= category.model %>"><%= category.model %></option>
+                <% }); %>
+              <% } %>
+            </select>
 
           <button type="submit">Lägg till</button>
         </form>

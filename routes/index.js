@@ -9,6 +9,8 @@ function hashPassword(password) {
 }
 
 const imagesDir = path.join(__dirname, '..', 'public', 'stylesheets', 'Images');
+const categoriesImagesDir = path.join(__dirname, '..', 'public', 'images', 'categories');
+fs.mkdirSync(categoriesImagesDir, { recursive: true });
 
 const nameMap = {
   'FF_Svart_Hoodie': 'Svart Hoodie',
@@ -50,9 +52,11 @@ function getClothesFromDb() {
   }));
 }
 
+let multer;
 let upload;
+let categoryUpload;
 try {
-  const multer = require('multer');
+  multer = require('multer');
   const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, imagesDir);
@@ -62,10 +66,21 @@ try {
       cb(null, unique);
     }
   });
+  const categoryStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, categoriesImagesDir);
+    },
+    filename: function (req, file, cb) {
+      const unique = Date.now() + '_' + file.originalname.replace(/[^a-zA-Z0-9._-]/g, '_');
+      cb(null, unique);
+    }
+  });
   upload = multer({ storage });
+  categoryUpload = multer({ storage: categoryStorage });
 } catch (err) {
   console.warn('multer not available; file upload disabled');
   upload = { single: () => (req, res, next) => next() };
+  categoryUpload = { single: () => (req, res, next) => next() };
 }
 
 /* GET home page. */
@@ -216,17 +231,24 @@ router.get('/products', function(req, res, next) {
 });
 
 router.get('/admin/products/new', function(req, res, next) {
-  res.render('admin/products/new', { title: 'New Product' });
+  const categories = db.prepare(
+    'SELECT DISTINCT model FROM clothes ORDER BY model ASC'
+  ).all();
+  res.render('admin/products/new', { title: 'New Product', categories, message: null });
 });
 
 router.post('/admin/products/new', upload.single('image'), function(req, res, next) {
   const { brand, model, color, description, price, sku } = req.body;
+  const categories = db.prepare(
+    'SELECT DISTINCT model FROM clothes ORDER BY model ASC'
+  ).all();
+
   if (!sku || !sku.trim()) {
-    return res.render('admin/products/new', { title: 'New Product', message: 'SKU krävs.' });
+    return res.render('admin/products/new', { title: 'New Product', categories, message: 'SKU krävs.' });
   }
   const existing = db.prepare('SELECT id FROM clothes WHERE sku = ?').get(sku);
   if (existing) {
-    return res.render('admin/products/new', { title: 'New Product', message: 'SKU finns redan. Välj annan.' });
+    return res.render('admin/products/new', { title: 'New Product', categories, message: 'SKU finns redan. Välj annan.' });
   }
   const filename = req.file ? req.file.filename : '';
   db.prepare(
@@ -252,6 +274,60 @@ router.get('/admin/products', function(req, res, next) {
     title: 'Admin - Products',
     products,
     message: null
+  });
+});
+
+router.get('/admin/categories', function(req, res, next) {
+  const categories = db.prepare(
+    'SELECT DISTINCT model FROM clothes ORDER BY model ASC'
+  ).all();
+
+  res.render('admin/categories', {
+    title: 'Admin - Categories',
+    categories,
+    message: null
+  });
+});
+
+router.get('/admin/categories/new', function(req, res, next) {
+  res.render('admin/categories/new', { title: 'Ny kategori', message: null });
+});
+
+router.post('/admin/categories/new', categoryUpload.single('image'), function(req, res, next) {
+  const name = req.body.name ? req.body.name.trim() : '';
+  let message = null;
+  if (!name) {
+    return res.render('admin/categories/new', { title: 'Ny kategori', message: 'Namn krävs.' });
+  }
+  if (name.length > 25) {
+    return res.render('admin/categories/new', { title: 'Ny kategori', message: 'Namn får högst vara 25 tecken.' });
+  }
+
+  if (req.file) {
+    message = `Kategori "${name}" sparad och bilden sparad som ${req.file.filename}.`;
+  } else {
+    message = `Kategori "${name}" sparad utan bild.`;
+  }
+
+  res.render('admin/categories/new', { title: 'Ny kategori', message });
+});
+
+router.post('/admin/categories/delete', function(req, res, next) {
+  const model = req.body.model;
+  let message = null;
+  if (model) {
+    db.prepare('DELETE FROM clothes WHERE model = ?').run(model);
+    message = 'Kategorin är nu borttagen.';
+  }
+
+  const categories = db.prepare(
+    'SELECT DISTINCT model FROM clothes ORDER BY model ASC'
+  ).all();
+
+  res.render('admin/categories', {
+    title: 'Admin - Categories',
+    categories,
+    message
   });
 });
 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Administration - Kategorier</title>
+  <link rel="stylesheet" href="/stylesheets/admin_categories.css"/>
+</head>
+<body>
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Administration</h2>
+
+      <nav>
+        <a href="/admin/products">Produkter</a>
+        <a href="/admin/categories" class="active">Kategorier</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+      <div class="top-bar">
+        <h1>Kategorier</h1>
+
+         <button class="new-category-btn">
+          <a href="/admin/categories/new">
+            Ny kategori
+          </a>
+        </button>
+
+      </div>
+
+      <% if (typeof message !== 'undefined' && message) { %>
+        <div class="admin-message">
+          <p><%= message %></p>
+        </div>
+      <% } %>
+
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>Kategori</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (categories && categories.length) { %>
+            <% categories.forEach(function(category) { %>
+              <tr>
+                <td><%= category.model %></td>
+                <td class="delete-cell">
+                  <form method="POST" action="/admin/categories/delete" onsubmit="return confirm('Är du säker på att du vill ta bort den här kategorin?');">
+                    <input type="hidden" name="model" value="<%= category.model %>">
+                    <button class="delete-btn" type="submit">🗑</button>
+                  </form>
+                </td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr>
+              <td colspan="2">Inga kategorier hittades.</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </main>
+  </div>
+</body>
+</html>

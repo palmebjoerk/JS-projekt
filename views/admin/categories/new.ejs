@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Administration - Ny kategori</title>
+  <link rel="stylesheet" href="/stylesheets/admin_products.css"/>
+</head>
+<body>
+
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Administration</h2>
+
+      <nav>
+        <a href="/admin/products">Produkter</a>
+        <a href="/admin/categories" class="active">Kategorier</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+
+      <div class="top-bar">
+        <h1>Ny kategori</h1>
+      </div>
+
+      <div class="form-container">
+        <% if (typeof message !== 'undefined' && message) { %>
+          <div class="form-message"><%= message %></div>
+        <% } %>
+
+        <form class="product-form" action="/admin/categories/new" method="post" enctype="multipart/form-data">
+          <label for="category-name">Namn</label>
+          <input id="category-name" name="name" type="text" maxlength="25" required>
+
+          <label for="category-image">Bild</label>
+          <input id="category-image" name="image" type="file" accept="image/*">
+
+          <button type="submit">Lägg till</button>
+        </form>
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>
