@@ -8,6 +8,21 @@ function hashPassword(password) {
   return crypto.createHash('sha256').update(password).digest('hex');
 }
 
+function getCurrentUser(req) {
+  const email = req.cookies && req.cookies.user_email;
+  if (!email) return null;
+  return db.prepare('SELECT * FROM users WHERE email = ?').get(email.toLowerCase());
+}
+
+function requireAdmin(req, res, next) {
+  const user = getCurrentUser(req);
+  if (!user || user.admin !== 1) {
+    return res.redirect('/login');
+  }
+  req.user = user;
+  next();
+}
+
 const imagesDir = path.join(__dirname, '..', 'public', 'stylesheets', 'Images');
 const categoriesImagesDir = path.join(__dirname, '..', 'public', 'images', 'categories');
 fs.mkdirSync(categoriesImagesDir, { recursive: true });
@@ -229,6 +244,8 @@ router.get('/products/new', function(req, res, next) {
 router.get('/products', function(req, res, next) {
   res.render('products', { title: 'Products' });
 });
+
+router.use('/admin', requireAdmin);
 
 router.get('/admin/products/new', function(req, res, next) {
   const categories = db.prepare(
